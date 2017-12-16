@@ -3,10 +3,13 @@ import Unit from './Unit';
 import Pathfinding from './Pathfinding';
 import Background from './Background';
 import GameManager from './GameManager';
-
+import Mediator from "../../modules/mediator";
+import Transport from "../../transport/transport.js";
+import Action from "./Action";
 /*export default */
-export default class DemoGameModule {
+export default class OnlineGameModule {
     constructor() {
+        this.characterList = [];
         this.gameManager = new GameManager();
         this.WIDTH = 16;
         this.HEIGHT = 12;
@@ -21,6 +24,24 @@ export default class DemoGameModule {
         this.timer = 30000;
         this.intervalId = 0;
         this.interval = 100;
+
+        this.mediator = new Mediator();
+        this.transport = new Transport();
+        this.mediator.subscribe("CharacterListResponseMessage", (event) => {
+            this.characterListResponse(event).bind(this);
+        });
+        this.mediator.subscribe("ActionResponseMessage", (event) => {
+            this.actionResponse(event).bind(this)
+        });
+        this.mediator.subscribe("LobbyResponseMessage", (event) => {
+            this.lobbyResponse(event).bind(this)
+        });
+        this.mediator.subscribe("NextRoomResponseMessage", (event) => {
+            this.nextRoomResponse(event).bind(this)
+        });
+        this.mediator.subscribe("StayInLineResponseMessage", (event) => {
+            this.stayInLineResponse(event).bind(this)
+        });
     }
 
     gameStart() {
@@ -29,13 +50,56 @@ export default class DemoGameModule {
     }
 
     gamePreRender() {
-        let numberSchene = 0;
-        let back = new Background(numberSchene);
+        let numberScene = 0;
+        let back = new Background(numberScene);
         back.render();
         this.gameManager.startGameRendering(this.gameStart.bind(this));
     }
 
+    messageRequest(request, content = null) {
+        this.transport.send(request, content);
+    }
+
+    characterListResponse(content) {
+        content.characterList.forEach(() => {
+            //TODO make unit model from back turn into unit model from front
+            this.characterList.push(content.characterList.UserCharacter);
+        });
+        //drawCharacters()
+    }
+
+
+    actionResponse(content) {
+        let action = new Action();
+        action.sender = content.sender;
+        action.target = content.target;
+        action.ability = content.ability;
+        //TODO events = content.events
+        //TODO обработка действий как в геймлупе
+    }
+
+
+    lobbyResponse(content) {
+        if(content.message === "success"){
+           this.gamePreRender();
+        } else {
+            //TODO setTimeout
+            this.messageRequest("LobbyRequestMessage");
+        }
+    }
+
+    nextRoomResponse(content = null) {
+    }
+
+    stayInLineResponse(content = null) {
+    }
+
     gamePrepare() {
+        //как это должно работать - посылаем некструм реквест через менеджер
+        this.messageRequest("NextRoomRequestMessage");
+        //ждем ответа от сервера и емита от медиатора
+
+        /*
         this.players = this.generatePlayers();
         this.enemies = this.generateEnemies();
         this.initiativeLine.PushEveryone(this.players, this.enemies);
@@ -53,56 +117,19 @@ export default class DemoGameModule {
         console.log(this.activeUnit.name + ' - let\'s start with you!');
         this.gameManager.unitManager.activeUnit(this.activeUnit);
         this.sendPossibleMoves();
+        */
     }
 
 
+
+
     gameLoop() {
-        if (!this.isPartyDead() && !this.isEnemiesDead()) {
-            this.timer -= this.interval;
-            let sec = Math.ceil(this.timer/1000);
-            if (sec < 10) {
-                sec = '0' + sec;
-            }
-            document.getElementById('time').innerHTML = '00:' + sec;
-            //где-то здесь есть работа с АИ
-            //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
-            if (global.actionDeque.length > 0) {
-                console.log('action begin');
-                this.activeUnit.actionPoint--;
-                let action = global.actionDeque.shift();
-                if (action.isMovement() && !action.target.isOccupied()) {
-                    this.makeMove(action);
-                // } else if (action.isPrepareAbility()) {
-                //     this.makePrepareAbility(action);
-                } else if (action.isAbility()) {
-                    console.log('this is ability: ' + action.ability.name);
-                    if (action.ability.damage[1] < 0) {
-                        this.makeHill(action);
-                    } else if (action.ability.damage[1] > 0) {
-                        this.makeDamage(action);
-                    }
-                } else if (action.isSkip()) {
-                    this.skipAction();
-                }
-
-                if(this.activeUnit.actionPoint === 1) {
-                    this.sendPossibleMoves();
-                }
-            }
-            console.log('action point: ' + this.activeUnit.actionPoint);
-
-            if (this.activeUnit.actionPoint === 0 || Math.ceil(this.timer / 1000) === 0 || this.activeUnit.isDead()){
-                this.skipAction();
-            }
-        } else {
-            if (this.isPartyDead()) {
-                this.loseGame();
-            }
-
-            if (this.isEnemiesDead()) {
-                this.winGame();
-            }
+        this.timer -= this.interval;
+        let sec = Math.ceil(this.timer/1000);
+        if (sec < 10) {
+            sec = '0' + sec;
         }
+        document.getElementById('time').innerHTML = '00:' + sec;
     }
 
     // makePrepareAbility(action) {
@@ -323,6 +350,7 @@ export default class DemoGameModule {
         if (this.intervalId) {
             clearInterval(this.intervalId);
         }
+        this.unsubscribe();
     }
 
     skipAction() {
@@ -351,5 +379,14 @@ export default class DemoGameModule {
         this.sendPossibleMoves();
         //изменяем LowerBar
         //изменяем activeEntity
+    }
+
+    unsubscribe() {
+        this.mediator.unsubscribe("CharacterListResponseMessage", this.characterListResponse().bind(this));
+        this.mediator.unsubscribe("ActionResponseMessage", this.actionResponse().bind(this));
+        this.mediator.unsubscribe("LobbyResponseMessage", this.lobbyResponse().bind(this));
+        this.mediator.unsubscribe("NextRoomResponseMessage", this.nextRoomResponse().bind(this));
+        this.mediator.unsubscribe("StayInLineResponseMessage", this.stayInLineResponse().bind(this));
+        //this.mediator.publish("DELETE_GAME");
     }
 }

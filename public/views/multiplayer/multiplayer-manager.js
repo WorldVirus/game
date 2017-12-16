@@ -3,65 +3,58 @@
 import Mediator from "../../modules/mediator";
 import Transport from "../../transport/transport.js";
 
-export default class MultiPlayerStrategy {
+export default class MultiplayerManager {
     constructor() {
-        console.log('constructor_work')
+        console.log('multiplayerManager_constructor_work')
         this.mediator = new Mediator();
         this.transport = new Transport();
-        this.mediator.subscribe("CharacterListRequestMessage", this.startGame.bind(this));
-        this.mediator.subscribe("ActionRequestMessage", this.stopGame.bind(this));
-        this.mediator.subscribe("LobbyRequestMessage", this.exit.bind(this));
-        this.mediator.subscribe("NextRoomRequestMessage", this.newUser.bind(this));
-        this.mediator.subscribe("StayInLineRequestMessage", this.deleteUser.bind(this));
-
-        this.transport.send("START_MP_GAME");
-
-        this.mediator.publish("LOADING");
-    }
-
-    startGame(content) {
-        this.mediator.publish("VIEW_LOADED");
-
-        if (content.type !== "mp") {
-            return;
-        }
-
-        content.players.forEach(player => {
-            this.mediator.publish("ADD_PLAYER", player);
-        });
+        this.mediator.subscribe("CharacterListResponseMessage", this.characterListResponse(event).bind(this));
+        this.mediator.subscribe("ActionResponseMessage", this.actionResponse().bind(this));
+        this.mediator.subscribe("LobbyResponseMessage", this.lobbyResponse().bind(this));
+        this.mediator.subscribe("NextRoomResponseMessage", this.nextRoomResponse().bind(this));
+        this.mediator.subscribe("StayInLineResponseMessage", this.stayInLineResponse().bind(this));
+        //this.mediator.publish("LOADING");
 
     }
 
-    stopGame(content) {
-        this.timeout = setTimeout(() => {
-            this.transport.send("STOP_MP_GAME");
-            this.mediator.publish("LOADING");
-        }, 5000);
+    messageRequest(request, content = null) {
+        this.transport.send(request, content);
     }
 
-    exit() {
-        clearTimeout(this.timeout);
-        this.transport.send("EXIT", {});
-        this.unsubscribe();
+    characterListResponse(content = null) {
+
     }
 
-    newUser(content) {
-        content.players.forEach(player => {
-            player.new = true;
-            this.mediator.publish("ADD_PLAYER", player);
-        });
+    actionResponse(content) {
+        this.mediator.publish("ActionRequestMessage");
+
+        this.transport.send("ActionRequestMessage", content);
     }
 
-    deleteUser(content) {
-        this.mediator.publish("DELETE_PLAYER", content.player);
+    lobbyResponse(content = null) {
+        this.mediator.publish("LobbyRequestMessage");
+
+        this.transport.send("LobbyRequestMessage", content);
+    }
+
+    nextRoomResponse(content = null) {
+        this.mediator.publish("NextRoomRequestMessage");
+
+        this.transport.send("NextRoomRequestMessage", content);
+    }
+
+    stayInLineResponse(content = null) {
+        this.mediator.publish("StayInLineRequestMessage");
+
+        this.transport.send("StayInLineRequestMessage", content);
     }
 
     unsubscribe() {
-        this.mediator.unsubscribe("START_MP_GAME", this.startGame.bind(this));
-        this.mediator.unsubscribe("STOP_GAME", this.stopGame.bind(this));
-        this.mediator.unsubscribe("EXIT", this.exit.bind(this));
-        this.mediator.unsubscribe("PLAYERS_CONNECT", this.newUser.bind(this));
-        this.mediator.unsubscribe("PLAYER_DISCONNECT", this.deleteUser.bind(this));
-        this.mediator.publish("DELETE_GAME");
+        this.mediator.unsubscribe("CharacterListResponseMessage", this.characterListResponse().bind(this));
+        this.mediator.unsubscribe("ActionResponseMessage", this.actionResponse().bind(this));
+        this.mediator.unsubscribe("LobbyResponseMessage", this.lobbyResponse().bind(this));
+        this.mediator.unsubscribe("NextRoomResponseMessage", this.nextRoomResponse().bind(this));
+        this.mediator.unsubscribe("StayInLineResponseMessage", this.stayInLineResponse().bind(this));
+        //this.mediator.publish("DELETE_GAME");
     }
 }
