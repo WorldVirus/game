@@ -29,8 +29,8 @@ export default class DemoGameModule {
     }
 
     gamePreRender() {
-        let numberSchene = 0;
-        let back = new Background(numberSchene);
+        let numberScene = 0;
+        let back = new Background(numberScene);
         back.render();
         this.gameManager.startGameRendering(this.gameStart.bind(this));
     }
@@ -58,12 +58,12 @@ export default class DemoGameModule {
 
     gameLoop() {
         if (!this.isPartyDead() && !this.isEnemiesDead()) {
-            this.timer -= this.interval;
-            let sec = Math.ceil(this.timer/1000);
-            if (sec < 10) {
-                sec = '0' + sec;
-            }
-            document.getElementById('time').innerHTML = '00:' + sec;
+            // this.timer -= this.interval;
+            // let sec = Math.ceil(this.timer/1000);
+            // if (sec < 10) {
+            //     sec = '0' + sec;
+            // }
+            //document.getElementById('time').innerHTML = '00:' + sec;
             //где-то здесь есть работа с АИ
             //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
             if (global.actionDeque.length > 0) {
