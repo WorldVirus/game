@@ -1,4 +1,4 @@
-/*const CACHE_NAME = 'serviceworker_v_1';
+const CACHE_NAME = 'serviceworker_v_1';
 
 const cacheUrls = [
     "/dist/bundle.js",
@@ -40,4 +40,4 @@ self.addEventListener('activate', function(event) {
             }));
         })
     );
-});*/
+});

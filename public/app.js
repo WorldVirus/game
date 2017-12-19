@@ -6,7 +6,7 @@ import MainPage from './views/mainpage/mainpage';
 import Login from './views/login/login';
 import Registration from './views/signup/registration';
 import Info from './views/info/info';
-//import Game from './views/multiplayer/game';
+
 import SinglePlay from "./views/singleplay/web";
 import Choose from "./views/multiplayer/registration-module/charlist";
 function requireAll(r) { r.keys().forEach(r); }
@@ -23,11 +23,10 @@ const login = new Login();
 const mainMenu = new MainPage();
 const signup = new Registration();
 const info = new Info();
-//const game = new Game();
 const single = new SinglePlay();
 const choose = new Choose();
 
-/*
+
 navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
     .then((registration) => {
         console.log('ServiceWorker registration', registration);
@@ -35,13 +34,12 @@ navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
     .catch((error) => {
         throw new Error(`ServiceWorker error: ${error}`);
     });
-*/
+
 const router = new  Router();
 router.register('/', mainMenu)
     .register('/login', login)
     .register('/signup', signup)
     .register('/info', info)
-   // .register('/multiplayer', game)
     .register('/singleplay',single )
     .register('/game',choose)
     .navigate();

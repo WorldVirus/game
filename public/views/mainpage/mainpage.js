@@ -5,6 +5,7 @@ import ChangeTheme from './mainStyle';
 const imageWall = "wall";
 const wrape = document.querySelector('div.menu');
 //import {mainPage} from '../main'
+import DemoGameModule from '../singleplay/DemoGameModule'
 export const buttons = [
     {
         name: 'First',
@@ -39,17 +40,19 @@ export class MainPage extends Block {
     }
 
     creation() {
-
+        if (document.querySelector('div.wrapper') === null) {
+            let game = new DemoGameModule();
+            game.gameManager.engine.loop = false;
+            document.getElementById('application').remove();
+            let wr = document.createElement('div');
+            document.getElementById('application').appendChild(wr);
+            wr.setAttribute('class','wrapper');
+        }
         const wrape = document.querySelector('div.menu');
         if (document.querySelector('div.menu') === null) {
             let banner = document.createElement("div");
             document.querySelector('div.wrapper').appendChild(banner)
             banner.setAttribute('class','menu');
-          //  let test = new MainPage();
-            //wrape.appendChild(test);
-            //  let ull = document.createElement("ul");
-           //  document.querySelector('div.menu').appendChild(ull);
-           // ull.setAttribute('class','name')
             document.querySelector('div.menu').appendChild(this._element)
         }
         else {
