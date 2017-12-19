@@ -12,27 +12,17 @@ const userService = new UserService();
 const application = new Block(document.getElementById('application'));
 
 const wrapper = new Block('div', ['wrapper']);
-const game = new Block('div', ['game']);
 
-const images = "logo";
-const imageWall = "wall";
-
-const for_wall  = new Block('div', ['for_wall']);
-application.appendChildBlock('for_wall', for_wall);
-for_wall.appendChildBlock("wall",
-    new Block('img', [imageWall]));
-
-application.appendChildBlock('application', wrapper);
-
+ const images = "logo";
 application.appendChildBlock("logo",
     new Block('img', [images]));
-/*application.appendChildBlock("wall",
-    new Block('img', [imageWall]));*/
+
 const logo = document.querySelector('img.logo');
 logo.setAttribute('src','../images/logo2.png');
 
-const wall = document.querySelector('img.wall');
-wall.setAttribute('src','../images/banner.png');
+application.appendChildBlock('application', wrapper);
+wrapper.appendChildBlock('menu',new Block('div',['menu']))
+
  function signin(login) {
     login.onSubmit((formdata) => {
         const authValidation = LoginValidate(formdata[0], formdata[1]);
@@ -42,13 +32,12 @@ wall.setAttribute('src','../images/banner.png');
         }
         userService.login(formdata[0], formdata[1])
             .then(() => new Router().go('/game'))
-            .then (() =>document.querySelector('form.login-form').remove())
             .then(() => {
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
                     document.querySelector('div.choose').remove();
-                    userService.logout()
-                    new Router().go('/')
+                    userService.logout();
+                    new Router().go('/');
                 })
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
@@ -63,12 +52,12 @@ wall.setAttribute('src','../images/banner.png');
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
              .then(() => new Router().go('/game'))
-             .then (() =>document.querySelector('form.registration-form').remove())
-             .then(() => {
-                 let logout = document.querySelector('a.back');
-                 logout.addEventListener('click', function () {
-                     userService.logout()
+              .then(() => {
+                  let logout = document.querySelector('a.back')
+                  logout.addEventListener('click', function () {
+                      console.log('back_work')
                      document.querySelector('div.choose').remove();
+                     userService.logout()
                      new Router().go('/')
                  })
              })
@@ -76,9 +65,6 @@ wall.setAttribute('src','../images/banner.png');
      });
  }
 
- //function mainPage() {
-
-// }
 
 export {signup,signin};
 

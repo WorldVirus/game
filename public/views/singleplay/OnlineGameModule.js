@@ -113,8 +113,7 @@ export default class OnlineGameModule {
         }
     }
 
-    nextRoomResponse(content) {
-
+    nextRoomResponse(content = null) {
     }
 
     stayInLineResponse(content = null) {

@@ -1,7 +1,6 @@
 import Block from '../baseview';
 import './info.scss';
 
-
 const buttonBack = "buttonBack";
 const authors = [
     {
@@ -24,26 +23,22 @@ const authors = [
 class Info extends Block {
     constructor() {
         super('ul', ['info'], {});
-        this.createChildren();
-        return this;
-    }
-
-    createChildren() {
-        this.appendChildBlock('auth',new Block('h1',['authors_header']).setText('Creators'));
-        authors.forEach((i) => {
-            let value = new Block('li', ['authors']);
-          this.appendChildBlock(i.name,
-                value.setText(i.name))
-            value.setAttribute("href",i.link);
-        });
     }
 
     creation() {
-        const wrappe = document.querySelector('div.wrapper');
-        if (wrappe.childNodes[0] !== undefined) {
-            wrappe.removeChild(wrappe.childNodes[0])
+        const wrape = document.querySelector('div.menu');
+
+        if (document.querySelector('div.menu').childNodes[0] !== undefined) {
+            document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
         }
-        wrappe.appendChild(this._element);
+        wrape.appendChild(this._element);
+
+        authors.forEach((i) => {
+            this.appendChildBlock('li',new Block('li', [i.name]));
+            let but  =  document.querySelector('li.' + i.name);
+            but.innerHTML = `<a>${i.name}</a>`;
+            but.querySelector('a').setAttribute('href',i.link);
+        });
     }
 
 }

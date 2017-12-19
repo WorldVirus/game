@@ -18,15 +18,15 @@ class Validate {
 static userError () {
     let form;
     const div = document.createElement('div');
-    if (document.querySelector('form.login-form') === null && document.getElementsByTagName('p').length === 0) {
-        form = document.querySelector('form.registration-form');
+    if (document.querySelector('form.login') === null && document.getElementsByTagName('p').length === 0) {
+        form = document.querySelector('form.registration');
         div.className = "message-error";
         div.innerHTML = "<p> Sorry,user is already exist </p> ";
         form.appendChild(div);
     }
 
-    else if (document.querySelector('form.login-form') !== null && document.getElementsByTagName('p').length === 0){
-        form = document.querySelector('form.login-form');
+    else if (document.querySelector('form.registration') === null && document.getElementsByTagName('p').length === 0){
+        form = document.querySelector('form.login');
         div.className = "message-error";
         div.innerHTML = "<p> Sorry,user is not found </p> ";
         form.appendChild(div);

@@ -9,7 +9,8 @@ html {
 
 }
 
-.for_wall {
+/*
+.for-wall {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -22,25 +23,45 @@ html {
     overflow: auto;
     align-self: center;
 }
-.wall{
+.for-wall__img{
     position: absolute;
     display: block;
     border: none;
-}
+}*/
 /*
-.wall{
+.for-for-wall__img__img{
     top: 13%;
     left: 31%;
     margin: -125px 0 0 -125px;
 
 }*/
+
+
+@keyframes snow {
+    0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+    100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
+}
+#application {
+    background-image: url(../images/snowflake.png), url(../images/snowflake3.png), url(../images/snowflake2.png);
+    height: 100%;
+    animation: snow 20s linear infinite;
+}
+
+
 .logo{
     margin-left: -4px;
     max-width: 100%;
     min-width: 99%;
     /* max-height: 56%; */
     min-height: 12%;
-    position: absolute;
+}
+
+.menu {
+    background: url("../images/banner.png") no-repeat;
+    width: 543px;
+    background-size: contain;
+    height: 591px;
+    margin: -40px auto auto;
 }
 
 
@@ -118,7 +139,7 @@ html {
         width: 960px;
         height: 190px;
     }
-    .wall{
+    .for-wall__img{
         margin-left: 22%;
     }
     .notfound{
@@ -132,7 +153,7 @@ html {
         height: 40vh;
     }
 
-    .wall {
+    .for-wall__img {
         margin-top: 14%;
         margin-left: 28%;
         width: 49vw;

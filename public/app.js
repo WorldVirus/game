@@ -8,7 +8,7 @@ import Registration from './views/signup/registration';
 import Info from './views/info/info';
 //import Game from './views/multiplayer/game';
 import SinglePlay from "./views/singleplay/web";
-import Choose from "./views/multiplayer/registration-module/registration-module";
+import Choose from "./views/multiplayer/registration-module/charlist";
 function requireAll(r) { r.keys().forEach(r); }
 require('./views/main.js');
 require('./views/base.css');

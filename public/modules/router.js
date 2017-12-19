@@ -25,14 +25,14 @@ export default  class Router {
 
         document.body.addEventListener('click', event => {
 
-            if (event.target.tagName.toLowerCase() === 'a' ) {
-
+            if (event.target.tagName.toLowerCase() === 'li' ) {
                 event.preventDefault();
                 const element = event.target;
                 const pathname = element.getAttribute('value');
 
                 if (pathname !== null) {
-                    this.go(pathname);
+                    console.log('secondwork')
+                   this.go(pathname);
                 }
             }
         });

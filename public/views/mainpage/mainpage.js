@@ -3,6 +3,7 @@ import './main-page.scss';
 //import mk from '../../index.html'
 import ChangeTheme from './mainStyle';
 const imageWall = "wall";
+const wrape = document.querySelector('div.menu');
 //import {mainPage} from '../main'
 export const buttons = [
     {
@@ -14,7 +15,7 @@ export const buttons = [
     {
         name: 'Second',
         text: 'Singleplayer',
-        value:'/singleplayer'
+        value:'/singleplay'
 
     },
     {
@@ -34,51 +35,40 @@ const blockClass = 'button';
 
 export class MainPage extends Block {
     constructor() {
-        super('div', ['main-menu'], {});
-        this.createChildren();
-        return this;
+        super('ul', ['name'], {});
     }
 
-    createChildren() {
-        buttons.forEach((button) => {
-            this.appendChildBlock(button.name,
-                new Block('a', [blockClass + button.name]).setText(button.text))
-        });
-    }
     creation() {
-     //   /* if (document.getElementsByClassName('wrapper') === null) {
-     //        const test = document.getElementById('application');
-     //        document.body.remove();
-     //        document.body.innerHTML = require('../../index.html');
-     //        console.log('work');
-     //    }*/
-         // mainPage();
-        if (document.querySelector('img.wall') === null){
-            const application = document.getElementsByClassName('for_wall');
-             this.appendChildBlock('wall',new Block ('img',['wall']))
-               application.appendChild(this._element);
-               const wall = document.querySelector('img.wall');
-               wall.setAttribute('src','../images/banner.png');
+
+        const wrape = document.querySelector('div.menu');
+        if (document.querySelector('div.menu') === null) {
+            let banner = document.createElement("div");
+            document.querySelector('div.wrapper').appendChild(banner)
+            banner.setAttribute('class','menu');
+          //  let test = new MainPage();
+            //wrape.appendChild(test);
+            //  let ull = document.createElement("ul");
+           //  document.querySelector('div.menu').appendChild(ull);
+           // ull.setAttribute('class','name')
+            document.querySelector('div.menu').appendChild(this._element)
         }
-      const wrape = document.querySelector('div.wrapper');
-        if (wrape.childNodes[0] !== undefined) {
-            wrape.removeChild(wrape.childNodes[0])
+        else {
+            if (document.querySelector('div.menu').childNodes[0] !== undefined) {
+                document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
+                console.log('remove')
+            }
+            wrape.appendChild(this._element);
         }
-         wrape.appendChild(this._element);
 
-        const linkFirst = document.querySelector('a.buttonFirst');
-        linkFirst.setAttribute('value','/login');
+        buttons.forEach((button) => {
+            let newButtons  =  new Block('a', [blockClass + button.name]);
+            this.appendChildBlock('a',newButtons);
+            let but  =  document.querySelector('a.' + blockClass + button.name);
+            but.innerHTML = `<li>${button.text}</li>`;
+            but.querySelector('li').setAttribute('value',button.value);
 
-        const linkSecond = document.querySelector('a.buttonSecond');
-        linkSecond.setAttribute('value','/singleplay');
+        });
 
-        const linkThird= document.querySelector('a.buttonThird');
-        linkThird.setAttribute('value','/signup');
-        const linkFour = document.querySelector('a.buttonFour');
-        linkFour.setAttribute('value','/info');
-
-        const logo = document.querySelector('img.logo');
-        logo.setAttribute('src','../images/logo2.png');
     }
  }
 export default MainPage;

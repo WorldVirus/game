@@ -38,7 +38,4 @@ app.delete('/signout',
     }
 ));
 
-/*
-app.get("/singleplay", function(req, res) {
-    res.render( __dirname +'../public/views/singleplay/web.html');
-});*/
+

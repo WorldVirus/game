@@ -44,29 +44,22 @@ const fieldPrototypes = [
 
 class Registration extends Block {
     constructor() {
-        super('form', ['registration-form']);
+        super('form', ['registration']);
 
         fieldPrototypes.forEach((fieldPrototype) => {
             this.appendChildBlock(fieldPrototype.attributes.name,
                 new Input(fieldPrototype.type, ['field'], fieldPrototype.attributes));
         });
-        const buttonBack = "buttonBack";
-        this.appendChildBlock("buttonBack",
-            new Block('a', [buttonBack]));
     }
 
     creation() {
 
-        const wrappe = document.querySelector('div.wrapper');
+        const wrappe = document.querySelector('div.menu');
         if (wrappe.childNodes[0] !== undefined) {
             wrappe.removeChild(wrappe.childNodes[0])
         }
         wrappe.appendChild(this._element);
 
-        const navigator = document.querySelector('a.buttonBack');
-        navigator.addEventListener('click', () => {
-            new Router().go('/')
-        });
     }
 
     onSubmit(callback) {

@@ -20,6 +20,20 @@ class Http {
         return this._GetXMLHttpRequest(url);
     }
 
+    static Delete(address) {
+        return fetch(address, {
+            method: 'DELETE',
+            mode: 'cors',
+            credentials: 'include'
+        })
+            .then((response) => {
+                if (response.status >= 400) {
+                    throw response;
+                }
+                return response.json();
+              //  return response
+            });
+    }
     /**
      * Выполняет POST-запрос с использованием fetch (по возможности) или XMLHttpRequest
      * @param {string} address - "ручка"
