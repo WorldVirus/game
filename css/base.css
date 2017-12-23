@@ -37,7 +37,7 @@ html {
     height: 591px;
     margin: -40px auto auto;
 }
-.transition-name{
+.name{
     top: 31%;
     margin-left: 80%;
     position: relative;
@@ -50,7 +50,7 @@ font-size: 20px;
 border: 4px ridge black;
 cursor: pointer;
 transition: 3s linear;}
-.transition-name:hover {
+.name:hover {
     -webkit-transform: scale(2);
     transform: scale(2);
 }
