@@ -37,6 +37,11 @@ html {
     height: 591px;
     margin: -40px auto auto;
 }
+.name {
+    top: 31%;
+    margin-left: 80%;
+    color: #000;
+}
 
 
 @viewport {

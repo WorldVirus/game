@@ -25,10 +25,6 @@ let RegistrationValidate = (login, email, password, password_confirm) => {
         Validate.formError('form.registration');
         return false;
     }
-test =login
 }
-function get() {
-    return String(test)
-}
+
 export default RegistrationValidate;
-export {get};
