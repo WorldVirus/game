@@ -37,6 +37,23 @@ html {
     height: 591px;
     margin: -40px auto auto;
 }
+.transition-name{
+    top: 31%;
+    margin-left: 80%;
+    position: relative;
+    z-index: 2;
+    color:green;
+padding: 10px;
+text-align: center;
+max-width: 500px;
+font-size: 20px;
+border: 4px ridge black;
+cursor: pointer;
+transition: 3s linear;}
+.transition-name:hover {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+}
 .name {
     top: 31%;
     margin-left: 80%;
