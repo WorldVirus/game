@@ -58,7 +58,7 @@ export default class DemoGameModule {
 
 
     gameLoop() {
-        if (!this.isPartyDead() && !this.isEnemiesDead() && window.location.pathname === '/singleplay') {
+        if (!this.isPartyDead() && !this.isEnemiesDead()) {
             this.timer -= this.interval;
             let sec = Math.ceil(this.timer/1000);
             if (sec < 10) {
