@@ -4,6 +4,7 @@ import Validate from '../forms/validation';
  * @function AuthValidate
  * @return {string || null} возвращает null если ошибок нет
  */
+let test;
 let RegistrationValidate = (login, email, password, password_confirm) => {
 
     if (!Validate.validateLogin(login)) {
@@ -24,6 +25,10 @@ let RegistrationValidate = (login, email, password, password_confirm) => {
         Validate.formError('form.registration');
         return false;
     }
+test =login
 }
-
+function get() {
+    return String(test)
+}
 export default RegistrationValidate;
+export {get};
