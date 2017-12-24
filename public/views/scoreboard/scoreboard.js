@@ -20,7 +20,8 @@ class Scoreboard extends Block {
         if (document.querySelector('div.menu') !== undefined) {
             document.querySelector('div.menu').remove();
         }
-        wrape.appendChild(this._element);
+       const score = wrape.appendChild(document.createElement('div'));
+        score.setAttribute('class','score')
         document.querySelector('div.score').appendChild(document.createElement('table'));
         document.querySelector('table').setAttribute('class','table');
 
