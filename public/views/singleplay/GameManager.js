@@ -87,66 +87,67 @@ export default class GameManager {
     }
 
     initEvents() {
-        this.mouseMoveListener = document.addEventListener('mousemove', function(event) {
-            let x = event.clientX / window.innerWidth;
-            let y = event.clientY /window.innerHeight;
-            let xMin = (1 + global.mapShiftX)/2;
-            let xMax = xMin + 0.6;
-            let yMin = (1 - global.mapShiftY)/2;
-            let yMax = yMin + 0.8;
-            this.tiles.forEach(function(tile) {
-                this.spriteManager.deleteSprite(tile);
-            }.bind(this));
-            this.tiles = [];
-            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
-                let i = Math.floor(((x - xMin) / 0.6) / (1 / 16));
-                let j = Math.floor(((y - yMin) / 0.8) / (1 / 12));
-                if (i !== this.lastI && j !== this.lastJ && i < 16 && j < 12 && this.unitManager.massiveSkill) {
-                    let halfArea = Math.floor(this.unitManager.activeSkill.area/2) + 1;
-                    let tiles = [];
-                    for (let ii = i - halfArea; ii <= i + halfArea; ii++) {
-                        for (let jj = j - halfArea; jj <= j + halfArea; jj++) {
-                            if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
-                                tiles.push(global.tiledMap[ii][jj]);
+        if (window.location.pathname === '/singleplay') {
+            this.mouseMoveListener = document.addEventListener('mousemove', function (event) {
+                let x = event.clientX / window.innerWidth;
+                let y = event.clientY / window.innerHeight;
+                let xMin = (1 + global.mapShiftX) / 2;
+                let xMax = xMin + 0.6;
+                let yMin = (1 - global.mapShiftY) / 2;
+                let yMax = yMin + 0.8;
+                this.tiles.forEach(function (tile) {
+                    this.spriteManager.deleteSprite(tile);
+                }.bind(this));
+                this.tiles = [];
+                if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
+                    let i = Math.floor(((x - xMin) / 0.6) / (1 / 16));
+                    let j = Math.floor(((y - yMin) / 0.8) / (1 / 12));
+                    if (i !== this.lastI && j !== this.lastJ && i < 16 && j < 12 && this.unitManager.massiveSkill) {
+                        let halfArea = Math.floor(this.unitManager.activeSkill.area / 2) + 1;
+                        let tiles = [];
+                        for (let ii = i - halfArea; ii <= i + halfArea; ii++) {
+                            for (let jj = j - halfArea; jj <= j + halfArea; jj++) {
+                                if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
+                                    tiles.push(global.tiledMap[ii][jj]);
+                                }
                             }
                         }
+                        this.unitManager.drawActiveTiles(tiles);
+                    } else if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
+                        this.spriteManager.getSprite(this.activeElem).setTrans(Utils.translationOnMap(j, i));
+                    } else {
+                        this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
                     }
-                    this.unitManager.drawActiveTiles(tiles);
-                } else if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
-                    this.spriteManager.getSprite(this.activeElem).setTrans(Utils.translationOnMap(j, i));
-                } else {
-                    this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
                 }
-            }
-        }.bind(this));
-        this.clickListener = document.addEventListener('click', (event) => {
-            let x = event.clientX / this.engine.gl.canvas.clientWidth;
-            let y = event.clientY / this.engine.gl.canvas.clientHeight;
-            if (x>=0.2 && x <=0.3 && y<=0.05 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
-                let action = new Action();
-                action.sender = null;
-                action.target = null;
-                action.ability = null;
-                global.actionDeque.push(action);
-            } else if (x >= 0.94 && x <= 0.975 && y >= 0.015 && y <= 0.077222 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
-                document.getElementsByClassName('settings')[0].style.display = 'block';
+            }.bind(this));
+            this.clickListener = document.addEventListener('click', (event) => {
+                let x = event.clientX / this.engine.gl.canvas.clientWidth;
+                let y = event.clientY / this.engine.gl.canvas.clientHeight;
+                if (x >= 0.2 && x <= 0.3 && y <= 0.05 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
+                    let action = new Action();
+                    action.sender = null;
+                    action.target = null;
+                    action.ability = null;
+                    global.actionDeque.push(action);
+                } else if (x >= 0.94 && x <= 0.975 && y >= 0.015 && y <= 0.077222 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
+                    document.getElementsByClassName('settings')[0].style.display = 'block';
+                    let container = document.getElementsByClassName('container')[0];
+                    container.className += ' overlay';
+                }
+            });
+            document.getElementsByClassName('settings')[0].lastElementChild.firstElementChild.addEventListener('click', function () {
+                document.getElementsByClassName('settings')[0].style.display = 'none';
                 let container = document.getElementsByClassName('container')[0];
-                container.className += ' overlay';
-            }
-        });
-        document.getElementsByClassName('settings')[0].lastElementChild.firstElementChild.addEventListener('click', function() {
-            document.getElementsByClassName('settings')[0].style.display = 'none';
-            let container = document.getElementsByClassName('container')[0];
-            container.className = 'container';
-        });
-        document.getElementsByClassName('settings')[0].lastElementChild.lastElementChild.addEventListener('click', function() {
-            this.stop();
-        }.bind(this));
-        document.getElementsByClassName('settings')[0].lastElementChild.firstElementChild.nextElementSibling.addEventListener('click', function() {
-           this.stop();
-        }.bind(this));
+                container.className = 'container';
+            });
+            document.getElementsByClassName('settings')[0].lastElementChild.lastElementChild.addEventListener('click', function () {
+                this.stop();
+            }.bind(this));
+            document.getElementsByClassName('settings')[0].lastElementChild.firstElementChild.nextElementSibling.addEventListener('click', function () {
+                this.stop();
+            }.bind(this));
+        }
     }
-
     stop() {
         this.engine.loop = false;
         document.removeEventListener('mousemove', this.mouseMoveListener);

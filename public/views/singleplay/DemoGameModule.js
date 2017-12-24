@@ -58,49 +58,51 @@ export default class DemoGameModule {
 
 
     gameLoop() {
-        if (!this.isPartyDead() && !this.isEnemiesDead()) {
-            this.timer -= this.interval;
-            let sec = Math.ceil(this.timer/1000);
-            if (sec < 10) {
-                sec = '0' + sec;
-            }
-            document.getElementById('time').innerHTML = 'Skip';
-            //где-то здесь есть работа с АИ
-            //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
-            if (global.actionDeque.length > 0) {
-                GameManager.log('action begin', 'green');
-                this.activeUnit.actionPoint--;
-                let action = global.actionDeque.shift();
-                if (action.isMovement() && !action.target.isOccupied()) {
-                    this.makeMove(action);
-                // } else if (action.isPrepareAbility()) {
-                //     this.makePrepareAbility(action);
-                } else if (action.isAbility()) {
-                    GameManager.log('this is ability: ' + action.ability.name);
-                    if (action.ability.damage[1] < 0) {
-                        this.makeHill(action);
-                    } else if (action.ability.damage[1] > 0) {
-                        this.makeDamage(action);
+        if (window.location.pathname === '/singleplay') {
+            if (!this.isPartyDead() && !this.isEnemiesDead()) {
+                this.timer -= this.interval;
+                let sec = Math.ceil(this.timer / 1000);
+                if (sec < 10) {
+                    sec = '0' + sec;
+                }
+                document.getElementById('time').innerHTML = 'Skip';
+                //где-то здесь есть работа с АИ
+                //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
+                if (global.actionDeque.length > 0) {
+                    GameManager.log('action begin', 'green');
+                    this.activeUnit.actionPoint--;
+                    let action = global.actionDeque.shift();
+                    if (action.isMovement() && !action.target.isOccupied()) {
+                        this.makeMove(action);
+                        // } else if (action.isPrepareAbility()) {
+                        //     this.makePrepareAbility(action);
+                    } else if (action.isAbility()) {
+                        GameManager.log('this is ability: ' + action.ability.name);
+                        if (action.ability.damage[1] < 0) {
+                            this.makeHill(action);
+                        } else if (action.ability.damage[1] > 0) {
+                            this.makeDamage(action);
+                        }
+                    } else if (action.isSkip()) {
+                        this.skipAction();
                     }
-                } else if (action.isSkip()) {
+
+                    if (this.activeUnit.actionPoint === 1) {
+                        this.sendPossibleMoves();
+                    }
+                }
+
+                if (this.activeUnit.actionPoint === 0 || Math.ceil(this.timer / 1000) === 0 || this.activeUnit.isDead()) {
                     this.skipAction();
                 }
-
-                if(this.activeUnit.actionPoint === 1) {
-                    this.sendPossibleMoves();
+            } else {
+                if (this.isPartyDead()) {
+                    this.loseGame();
                 }
-            }
 
-            if (this.activeUnit.actionPoint === 0 || Math.ceil(this.timer / 1000) === 0 || this.activeUnit.isDead()){
-                this.skipAction();
-            }
-        } else {
-            if (this.isPartyDead()) {
-                this.loseGame();
-            }
-
-            if (this.isEnemiesDead()) {
-                this.winGame();
+                if (this.isEnemiesDead()) {
+                    this.winGame();
+                }
             }
         }
     }
