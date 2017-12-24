@@ -13,7 +13,7 @@ import Choose from "./views/multiplayer/registration-module/charlist";
 import GameType from "./views/multiplayer/choose/choose";
 function requireAll(r) { r.keys().forEach(r); }
 require('./views/main.js');
-require('../css/base.css');
+require('./css/base.css');
 
 
 requireAll(require.context('./blocks/', true, /\.(css)$/));
