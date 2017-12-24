@@ -35,7 +35,7 @@ export default  class Router {
                 }
             }
 
-            else if (event.target.tagName.toLowerCase() === 'a' &&  window.location.pathname === '/info' ) {
+            else if (event.target.tagName.toLowerCase() === 'a' &&  window.location.pathname !== '/info' ) {
                 event.preventDefault();
                 const element = event.target;
                 const pathname = element.getAttribute('value');
