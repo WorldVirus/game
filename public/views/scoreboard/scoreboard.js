@@ -25,6 +25,13 @@ class Scoreboard extends Block {
         document.querySelector('div.score').appendChild(document.createElement('table'));
         document.querySelector('table').setAttribute('class','table');
 
+        const left =  wrape.appendChild(document.createElement('a'))
+        left.setAttribute('class','left')
+
+        const right =  wrape.appendChild(document.createElement('a'))
+        right.setAttribute('class','right')
+
+
 
         const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
         if (typeof window.fetch !== 'undefined') {
@@ -78,6 +85,10 @@ class Scoreboard extends Block {
 
                             }
                         }
+
+                        // document.querySelector('a.left').addEventListener('click',() => {
+                        //
+                        // })
                     });
                 });
 
