@@ -79,5 +79,6 @@ class Scoreboard extends Block {
     }
 
 }
+
 export default Scoreboard;
 

@@ -99,7 +99,9 @@ export default class GameManager {
                     this.spriteManager.deleteSprite(tile);
                 }.bind(this));
                 this.tiles = [];
-                if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
+                if (window.location.pathname === '/singleplay') {
+
+                    if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
                     let i = Math.floor(((x - xMin) / 0.6) / (1 / 16));
                     let j = Math.floor(((y - yMin) / 0.8) / (1 / 12));
                     if (i !== this.lastI && j !== this.lastJ && i < 16 && j < 12 && this.unitManager.massiveSkill) {
@@ -119,7 +121,8 @@ export default class GameManager {
                         this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
                     }
                 }
-            }.bind(this));
+            }}.bind(this));
+
             this.clickListener = document.addEventListener('click', (event) => {
                 let x = event.clientX / this.engine.gl.canvas.clientWidth;
                 let y = event.clientY / this.engine.gl.canvas.clientHeight;
