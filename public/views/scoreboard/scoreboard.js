@@ -45,8 +45,14 @@ class Scoreboard extends Block {
                         });
                     }
                     json.then(function (data) {
-                        console.log(data);
-                        for (let i = 0; i < data.length +1; ++i) {
+                        let size = 0;
+                        if (data.length > 5) {
+                            size = 5
+                        }
+                        else {
+                            size = data.length
+                        }
+                        for (let i = 0; i < size +1; ++i) {
                             document.querySelector('table').appendChild(document.createElement('tr'))
                         }
                         const array = document.getElementsByTagName('tr');
@@ -57,7 +63,7 @@ class Scoreboard extends Block {
                             document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
                         }
 
-                        for (let i = 1; i < data.length + 1; ++i) {
+                        for (let i = 1; i < size + 1; ++i) {
                             for (let j = 0; j < 3; ++j) {
                                 array[i].appendChild(document.createElement('td'));
                                 if (j === 1) {
