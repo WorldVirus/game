@@ -4,7 +4,6 @@ import './module.scss'
 import Custom from '../../custom-module/custom-module'
 
 //import {setter} from '../../main'
-import {get} from '../../../blocks/autheficate/registrationAuth'
 const enity = [
     {
         src:'../../../images/warrior.png'
@@ -116,7 +115,8 @@ export default class Choose extends Block{
         while (document.querySelector('div.wrapper').firstChild) {
             document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
         }
-        wrape.appendChild(this._element);
+        const score  = wrape.appendChild(document.querySelector('div'));
+        score.setAttribute('class','choose');
         //let test = get();
         //console.log(test)
         //this.appendChildBlock('name',new Block('h3',['name']).setText(test))
