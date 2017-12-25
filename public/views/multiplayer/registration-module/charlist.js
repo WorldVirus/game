@@ -115,7 +115,7 @@ export default class Choose extends Block{
         while (document.querySelector('div.wrapper').firstChild) {
             document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
         }
-        const score  = wrape.appendChild(document.querySelector('div'));
+        const score  = wrape.appendChild(document.createElement('div'));
         score.setAttribute('class','choose');
         //let test = get();
         //console.log(test)
