@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="13255a80-a1d3-4c02-abac-bd86a53300d5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/dist/bundle.js" afterPath="$PROJECT_DIR$/public/dist/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/multiplayer/registration-module/charlist.js" afterPath="$PROJECT_DIR$/public/views/multiplayer/registration-module/charlist.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -75,8 +73,8 @@
       <file leaf-file-name="mainpage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/mainpage/mainpage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="64" column="10" lean-forward="false" selection-start-line="64" selection-start-column="10" selection-end-line="66" selection-end-column="13" />
+            <state relative-caret-position="320">
+              <caret line="61" column="9" lean-forward="true" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -420,12 +418,12 @@
       <workItem from="1514137810099" duration="6473000" />
       <workItem from="1514149271258" duration="329000" />
       <workItem from="1514229078451" duration="3366000" />
-      <workItem from="1514304893385" duration="1988000" />
+      <workItem from="1514304893385" duration="2186000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238950000" />
+    <option name="totallyTimeSpent" value="239148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -825,8 +823,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/mainpage/mainpage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="64" column="10" lean-forward="false" selection-start-line="64" selection-start-column="10" selection-end-line="66" selection-end-column="13" />
+        <state relative-caret-position="320">
+          <caret line="61" column="9" lean-forward="true" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
           <folding />
         </state>
       </provider>
