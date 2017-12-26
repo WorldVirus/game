@@ -20,17 +20,10 @@ class Scoreboard extends Block {
         if (document.querySelector('div.menu') !== undefined) {
             document.querySelector('div.menu').remove();
         }
-       const score = wrape.appendChild(document.createElement('div'));
-        score.setAttribute('class','score')
-        document.querySelector('div.score').appendChild(document.createElement('table'));
-        document.querySelector('table').setAttribute('class','table');
+        wrape.appendChild(this._element);
+        this.appendChildBlock('table', new Block('table', ['table']));
 
-        const left =  wrape.appendChild(document.createElement('a'))
-        left.setAttribute('class','left')
-
-        const right =  wrape.appendChild(document.createElement('a'))
-        right.setAttribute('class','right')
-
+        const table = new Block(document.querySelector('table.table'));
 
 
         const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
@@ -52,14 +45,13 @@ class Scoreboard extends Block {
                         });
                     }
                     json.then(function (data) {
-
+                        console.log(data);
                         for (let i = 0; i < data.length +1; ++i) {
-                            document.querySelector('table').appendChild(document.createElement('tr'))
+                            table.appendChildBlock('data', new Block('tr', ['data']))
                         }
                         const array = document.getElementsByTagName('tr');
                         let value = array[0];
                         for (let i = 0; i < 3; ++i) {
-                            array[i].setAttribute('class','data')
                             value.appendChild(document.createElement('th'));
                             document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
                         }
@@ -79,15 +71,12 @@ class Scoreboard extends Block {
 
                             }
                         }
-
                     });
                 });
 
-            }
+        }
 
     }
 
 }
-
 export default Scoreboard;
-
