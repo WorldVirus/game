@@ -35,11 +35,12 @@ export default class Choose extends Block{
         this.appendChildBlock('img',new Block('img', ['person']));
     }
     choose () {
-        this.appendChildBlock('choose',new Block ('a',['choose_left']))
-        wrape.appendChild(this._element)
+      const left =  document.querySelector('div.choose').appendChild(document.createElement('a'));
+      left.setAttribute('class','choose_left')
 
-        this.appendChildBlock('choose',new Block ('a',['choose_right']))
-        wrape.appendChild(this._element)
+        const right = document.querySelector('div.choose').appendChild(document.createElement('a'));
+        right.setAttribute('class','choose_right')
+
         let enityName = document.getElementsByTagName('li');
         enityName[i].style.color = "white";
         document.querySelector('a.choose_right').addEventListener('click', () => {
@@ -68,8 +69,10 @@ export default class Choose extends Block{
     }
 
     leftbar () {
-        this.appendChildBlock('left_bar',new Block ('div',['left_bar']))
-        wrape.appendChild(this._element)
+
+     //  document.querySelector('div.choose').innerHTML = `<div class ="left_bar" ></div>`;
+        const left_bar =document.querySelector('div.choose').appendChild(document.createElement('div'));
+        left_bar.setAttribute('class','left_bar');
         let list = document.createElement("ul");
         document.querySelector('div.left_bar').appendChild(list)
 
@@ -82,19 +85,22 @@ export default class Choose extends Block{
         for (let i = 0; i!==4;++i) {
             enityName[i].innerHTML = name[i];
         }
-
-        this.appendChildBlock('new_character',new Block ('a',['new_character']).setText('CREATE'))
-        wrape.appendChild(this._element)
-
-        document.querySelector('a.new_character').addEventListener('click', () => {
-            new Custom().creation('Coming soon....')
-        })
-
-
-        this.appendChildBlock('new_character',new Block ('a',['delete']).setText('DELETE'))
-        wrape.appendChild(this._element)
+        const left  = document.querySelector('div.choose').appendChild(document.createElement('a'));
+        left.setAttribute('class','delete');
+        left.innerHTML = 'DELETE';
 
         document.querySelector('a.delete').addEventListener('click', () => {
+            new Custom().creation('Coming soon....')
+        })
+        // this.appendChildBlock('new_character',new Block ('a',['new_character']).setText('CREATE'))
+        // wrape.appendChild(this._element)
+
+
+
+       const newCharacter = document.querySelector('div.choose').appendChild(document.createElement('a'));
+        newCharacter.setAttribute('class','new_character');
+        newCharacter.innerHTML = 'CREATE';
+        document.querySelector('a.new_character').addEventListener('click', () => {
             new Custom().creation('Coming soon....')
         })
 
@@ -109,16 +115,24 @@ export default class Choose extends Block{
         // wrape.appendChild(this._element)
         // document.querySelector('a.back').setAttribute('value','/')
 
-        document.querySelector('div.choose').innerHTML = `<a class ="enter" value = "/mode">ENTER</a>`;
-        const a =document.querySelector('div.choose').createElement('a');
-        a.innerHTML = `<a class ="back" value = "/">BACK</a>`;
+        const a = document.querySelector('div.choose').appendChild(document.createElement('a'))//= `<a class ="enter" value = "/mode">ENTER</a>`;
+        a.setAttribute('class','back');
+        a.setAttribute('value','/');
+        a.innerHTML = 'BACK'
+        const enter=document.querySelector('div.choose').appendChild(document.createElement('a'));
+        enter.setAttribute('class','enter');
+        enter.setAttribute('value','/mode');
+        enter.innerHTML = 'ENTER';
     }
     creation () {
         while (document.querySelector('div.wrapper').firstChild) {
             document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
         }
+
         const score  = document.querySelector('div.wrapper').appendChild(document.createElement('div'));
         score.setAttribute('class','choose');
+        const image = document.querySelector('div.choose').appendChild(document.createElement('img'));
+        image.setAttribute('class','person');
         //let test = get();
         //console.log(test)
         //this.appendChildBlock('name',new Block('h3',['name']).setText(test))
