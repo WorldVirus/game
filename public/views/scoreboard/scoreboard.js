@@ -37,6 +37,37 @@ class Scoreboard extends Block {
         wrape.appendChild(arrows);
         this.appendChildBlock('table', new Block('table', ['table']));
 
+        let fun1 = function() {
+            let arr = document.getElementsByTagName('tr');
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].style.display !== 'none') {
+                    for (let j = i - 1; j >= 0 && j >= i - 5; j--) {
+                        arr[j].style.display = 'table-cell';
+                    }
+                    for (let j = i; j < arr.length && j < i + 5; j++) {
+                        arr[j].style.display = 'none';
+                    }
+                }
+            }
+        };
+
+        let fun2 = function() {
+            let arr = document.getElementsByTagName('tr');
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].style.display !== 'none') {
+                    for (let j = i + 5; j < arr.length && j < i + 10; j++) {
+                        arr[j].style.display = 'table-cell';
+                    }
+                    for (let j = i; j < arr.length && j < i + 5; j++) {
+                        arr[j].style.display = 'none';
+                    }
+                }
+            }
+        };
+
+        img1.onclick = fun1;
+        img2.onclick = fun2;
+
         const table = new Block(document.querySelector('table.table'));
 
 
