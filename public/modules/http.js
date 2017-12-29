@@ -91,7 +91,6 @@ class Http {
                     reject(xhr);
                     return;
                 }
-                console.log("XHR тратата " + xhr.status);
                 const response = JSON.parse(xhr.responseText);
                 resolve(response);
             };
@@ -152,6 +151,9 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
+                    if (response.body.length === 0) {
+                        return;
+                    }
                     let json = response.json();
                     return json.then(response => {throw response;});
                 }
