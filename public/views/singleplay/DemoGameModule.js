@@ -50,6 +50,9 @@ export default class DemoGameModule {
 
         this.activeUnit = this.initiativeLine.CurrentUnit();
         GameManager.log(this.activeUnit.name + ' - let\'s start with you!');
+        GameManager.log('window.screen.width:' + window.screen.width);
+        GameManager.log('window.innerWidth:' + window.innerWidth);
+        GameManager.log('window.screen.availWidth:' + window.screen.availWidth);
         this.gameManager.unitManager.activeUnit(this.activeUnit);
         this.sendPossibleMoves();
     }
