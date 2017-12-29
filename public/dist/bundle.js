@@ -625,7 +625,7 @@ module.exports = g;
         gl.canvas.width = displayWidth;
         gl.canvas.height = displayHeight;
       }
-      gl.viewport(0, 0, window.screen.availWidth, window.screen.availHeight);
+      gl.viewport(0, 0, window.screen.availWidth * window.devicePixelRatio, window.screen.availHeight * window.devicePixelRatio);
 
       let settings = document.getElementsByClassName('settings')[0];
       settings.style.top = Math.floor((window.innerHeight - settings.offsetHeight) / 2) + 'px';
@@ -940,9 +940,9 @@ class GraphicEngine {
     // now *= 0.001;
     // let deltaTime = now - this.time;
     // this.time = now;
-    // if (deltaTime != 0) {
-    //   document.getElementById('fps').innerHTML = (1 / deltaTime).toFixed(0);
-    //   document.getElementById('fps').style.color = 'white';
+    // if (deltaTime != 0 && global.chat) {
+    //   chat.innerHTML += '<span style=\'color:' + 'white' + ';\'>' + (1 / deltaTime).toFixed(0) + '</span><br>';
+    //   chat.scrollTop = chat.scrollHeight;
     // }
 
     __WEBPACK_IMPORTED_MODULE_2__Utils__["a" /* default */].resize(this.gl);
@@ -2828,7 +2828,6 @@ class Program {
       // если компиляция прошла успешно - возвращаем шейдер
       return shader;
     }
-    console.log(this.gl.getShaderInfoLog(shader));
     this.gl.deleteShader(shader);
   }
 
@@ -2841,7 +2840,6 @@ class Program {
     if (success) {
       return program;
     }
-    console.log(this.gl.getProgramInfoLog(program));
     this.gl.deleteProgram(program);
   }
 }
@@ -3112,7 +3110,6 @@ class GameManager {
     }
 
     startGameRendering(callback) {
-        console.log('work rendering uints');
         let loaderTextures = new __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */](['/views/singleplay/textures/moveTile.png', '/views/singleplay/textures/activeTile.png', '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png', '/views/singleplay/textures/actionBack.png', '/views/singleplay/icons/circle.png', '/views/singleplay/icons/radio2.png', '/views/singleplay/icons/radio1.png', '/views/singleplay/icons/dead.png', '/views/singleplay/textures/greenTile.png', '/views/singleplay/textures/redTile.png'], this.engine.gl);
         let loaderAnimations = new __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */](['/views/singleplay/animations/fireball.png', '/views/singleplay/animations/Fire 5.png', '/views/singleplay/animations/thunderbolt.png', '/views/singleplay/animations/healing.png', '/views/singleplay/animations/blade_flurry.png', '/views/singleplay/animations/attack.png', '/views/singleplay/animations/holly_wrath.png', '/views/singleplay/animations/activeTile.png'], this.engine.gl);
         let loaderConditions = new __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */](['/views/singleplay/conditions/WarriorAngry.png', '/views/singleplay/conditions/WarriorAttack.png', '/views/singleplay/conditions/WarriorDead.png', '/views/singleplay/conditions/MageAngry.png', '/views/singleplay/conditions/MageAttack.png', '/views/singleplay/conditions/MageDead.png', '/views/singleplay/conditions/ThiefAngry.png', '/views/singleplay/conditions/ThiefAttack.png', '/views/singleplay/conditions/ThiefDead.png', '/views/singleplay/conditions/PriestAngry.png', '/views/singleplay/conditions/PriestAttack.png', '/views/singleplay/conditions/PriestDead.png', '/views/singleplay/conditions/Skeleton1Angry.png', '/views/singleplay/conditions/Skeleton1Attack.png', '/views/singleplay/conditions/Skeleton1Dead.png', '/views/singleplay/conditions/Skeleton2Angry.png', '/views/singleplay/conditions/Skeleton2Attack.png', '/views/singleplay/conditions/Skeleton2Dead.png'], this.engine.gl);
@@ -3474,7 +3471,6 @@ class UnitManager {
     }
 
     stateCheck(callback) {
-        console.log(this.state);
         if (this.state.state) {
             setTimeout(function () {
                 requestAnimationFrame(callback);
@@ -3608,7 +3604,6 @@ class UnitManager {
             activeSkillImg.style.left = 32.5 + 'vw';
         }
         unit.skills.forEach(function (skill, i) {
-            console.log(skill.name);
             let skillImg = document.createElement('img');
             skillImg.title = skill.getDesciption();
             skillImg.className = 'skill';
@@ -3635,7 +3630,6 @@ class UnitManager {
             let xMax = xMin + 0.6;
             let yMin = (1 - global.mapShiftY) / 2;
             let yMax = yMin + 0.8;
-            console.log('onmousedown STATE: ' + this.state.state);
             if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
                 let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
                 let j = Math.floor((y - yMin) / 0.8 / (1 / 12));

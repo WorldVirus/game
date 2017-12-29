@@ -7,7 +7,7 @@ export default class Utils {
               gl.canvas.width = displayWidth;
               gl.canvas.height = displayHeight;
           }
-          gl.viewport(0, 0, window.screen.availWidth, window.screen.availHeight);
+          gl.viewport(0, 0, window.screen.availWidth*window.devicePixelRatio, window.screen.availHeight*window.devicePixelRatio);
 
           let settings = document.getElementsByClassName('settings')[0];
           settings.style.top = Math.floor((window.innerHeight - settings.offsetHeight) / 2) + 'px';

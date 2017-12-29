@@ -20,7 +20,6 @@ export default class GameManager {
     }
 
     startGameRendering(callback) {
-        console.log('work rendering uints');
         let loaderTextures = new Loader([
             '/views/singleplay/textures/moveTile.png', '/views/singleplay/textures/activeTile.png',
             '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png',

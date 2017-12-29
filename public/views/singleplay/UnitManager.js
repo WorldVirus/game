@@ -32,7 +32,6 @@ export default class UnitManager {
     }
 
     stateCheck(callback) {
-        console.log(this.state);
         if (this.state.state) {
             setTimeout(function() {
                 requestAnimationFrame(callback);
@@ -168,7 +167,6 @@ export default class UnitManager {
             activeSkillImg.style.left = 32.5 + 'vw';
         }
         unit.skills.forEach(function(skill, i) {
-            console.log(skill.name);
             let skillImg = document.createElement('img');
             skillImg.title = skill.getDesciption();
             skillImg.className = 'skill';
@@ -195,7 +193,6 @@ export default class UnitManager {
             let xMax = xMin + 0.6;
             let yMin = (1 - global.mapShiftY)/2;
             let yMax = yMin + 0.8;
-            console.log('onmousedown STATE: ' + this.state.state);
             if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
                 let i = Math.floor(((x - xMin) / 0.6) / (1 / 16));
                 let j = Math.floor(((y - yMin) / 0.8) / (1 / 12));
