@@ -4159,9 +4159,20 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
             document.querySelector('div.menu').remove();
         }
         wrape.appendChild(this._element);
-        const img = document.createElement('img');
-        img.src = '../images/arrow.png';
-        wrape.appendChild(img);
+        const arrows = document.createElement('div');
+        arrows.style.width = '25%';
+        arrows.style.margin = 'auto';
+        const img1 = document.createElement('img');
+        const img2 = document.createElement('img');
+        img1.src = '../images/arrow.png';
+        img2.src = '../images/arrow.png';
+        img1.className = 'arrow';
+        img2.className = 'arrow';
+        img2.style.float = 'left';
+        img2.style.transform = 'scale(-1, 1)';
+        arrows.appendChild(img1);
+        arrows.appendChild(img2);
+        wrape.appendChild(arrows);
         this.appendChildBlock('table', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('table', ['table']));
 
         const table = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.querySelector('table.table'));
@@ -4195,17 +4206,23 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
                         document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
                     }
 
-                    for (let i = 1; i < data.length + 1; ++i) {
-                        for (let j = 0; j < 3; ++j) {
-                            array[i].appendChild(document.createElement('td'));
-                            if (j === 1) {
-                                array[i].childNodes[j].innerHTML = `${data[i - 1].gold}`;
-                                continue;
-                            } else if (j === 2) {
-                                array[i].childNodes[j].innerHTML = `${data[i - 1].frags}`;
-                                continue;
+                    for (let k = 0; k < Math.ceil(data.length / 5); k++) {
+                        for (let i = 1 + k * 5; i < 1 + (k + 1) * 5; ++i) {
+                            for (let j = 0; j < 3; ++j) {
+                                let el = document.createElement('td');
+                                if (k !== 0) {
+                                    el.style.display = 'none';
+                                }
+                                array[i].appendChild(el);
+                                if (j === 1) {
+                                    array[i].childNodes[j].innerHTML = `${data[i - 1].gold}`;
+                                    continue;
+                                } else if (j === 2) {
+                                    array[i].childNodes[j].innerHTML = `${data[i - 1].frags}`;
+                                    continue;
+                                }
+                                array[i].childNodes[j].innerHTML = `${data[i - 1].username}`;
                             }
-                            array[i].childNodes[j].innerHTML = `${data[i - 1].username}`;
                         }
                     }
                 });
@@ -4256,7 +4273,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".score {\n  color: #FAE7B5; }\n\ntable {\n  background-color: white;\n  border-radius: 20px;\n  font-size: 2em;\n  width: 50%;\n  color: black;\n  border-spacing: 30px;\n  margin: auto; }\n\ntable th {\n  color: #c58818;\n  text-align: left; }\n\ntable tr:hover {\n  color: #1800ff; }\n\ntable.animated-button.thar-four:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #F7CA18;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n", ""]);
+exports.push([module.i, ".score {\n  color: #FAE7B5; }\n\ntable {\n  background-color: white;\n  border-radius: 20px;\n  font-size: 2em;\n  width: 50%;\n  color: black;\n  border-spacing: 30px;\n  margin: auto; }\n\ntable th {\n  color: #c58818;\n  text-align: left; }\n\ntable tr:hover {\n  color: #1800ff; }\n\ntable.animated-button.thar-four:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #F7CA18;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n\n.arrow {\n  width: 50%;\n  opacity: 0.85; }\n\n.arrow:hover {\n  opacity: 1; }\n", ""]);
 
 // exports
 
