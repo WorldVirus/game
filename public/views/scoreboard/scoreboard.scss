@@ -33,3 +33,12 @@ table.animated-button.thar-four:before {
   background: #F7CA18;
   transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
 }
+
+.arrow {
+  width:50%;
+  opacity: 0.85;
+}
+
+.arrow:hover {
+  opacity: 1;
+}
