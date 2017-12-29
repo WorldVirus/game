@@ -21,9 +21,20 @@ class Scoreboard extends Block {
             document.querySelector('div.menu').remove();
         }
         wrape.appendChild(this._element);
-        const img = document.createElement('img');
-        img.src = '../images/arrow.png';
-        wrape.appendChild(img);
+        const arrows = document.createElement('div');
+        arrows.style.width = '30%';
+        arrows.style.margin = 'auto';
+        const img1 = document.createElement('img');
+        const img2 = document.createElement('img');
+        img1.src = '../images/arrow.png';
+        img2.src = '../images/arrow.png';
+        img1.style.width = '50%';
+        img2.style.width = '50%';
+        img2.style.float = 'left';
+        img2.style.transform = 'scale(-1, 1)';
+        arrows.appendChild(img1);
+        arrows.appendChild(img2);
+        wrape.appendChild(arrows);
         this.appendChildBlock('table', new Block('table', ['table']));
 
         const table = new Block(document.querySelector('table.table'));
