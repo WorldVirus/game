@@ -151,7 +151,7 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    if (response.body.length === 0) {
+                    if (!response.body) {
                         return;
                     }
                     let json = response.json();
