@@ -619,13 +619,13 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(global) {class Utils {
   static resize(gl) {
     if (window.location.pathname === '/singleplay') {
-      let displayWidth = window.screen.availWidth * window.devicePixelRatio;
-      let displayHeight = window.screen.availHeight * window.devicePixelRatio;
+      let displayWidth = window.screen.availWidth * (window.devicePixelRatio === 1 ? 1 : 1.5);
+      let displayHeight = window.screen.availHeight * (window.devicePixelRatio === 1 ? 1 : 1.5);
       if (gl.canvas.width !== displayWidth || gl.canvas.height !== displayHeight) {
         gl.canvas.width = displayWidth;
         gl.canvas.height = displayHeight;
       }
-      gl.viewport(0, 0, window.screen.availWidth * window.devicePixelRatio, window.screen.availHeight * window.devicePixelRatio);
+      gl.viewport(0, 0, window.screen.availWidth * (window.devicePixelRatio === 1 ? 1 : 1.5), window.screen.availHeight * (window.devicePixelRatio === 1 ? 1 : 1.5));
 
       let settings = document.getElementsByClassName('settings')[0];
       settings.style.top = Math.floor((window.innerHeight - settings.offsetHeight) / 2) + 'px';
