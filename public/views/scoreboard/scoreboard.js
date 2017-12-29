@@ -74,7 +74,7 @@ class Scoreboard extends Block {
                             for (let i = 1 + k*5; i < data.length && i < 1 + (k + 1)*5; ++i) {
                                 for (let j = 0; j < 3; ++j) {
                                     let el = document.createElement('td');
-                                    if (i < 6) {
+                                    if (i > 5) {
                                         el.style.display = 'none';
                                     }
                                     array[i].appendChild(el);
