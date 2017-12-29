@@ -71,7 +71,7 @@ class Scoreboard extends Block {
                         }
 
                         for (let k = 0; k < Math.ceil(data.length/5); k++) {
-                            for (let i = 1 + k*5; i < data.length && i < 1 + (k + 1)*5; ++i) {
+                            for (let i = 1 + k*5; i <= data.length && i <= 1 + (k + 1)*5; ++i) {
                                 for (let j = 0; j < 3; ++j) {
                                     let el = document.createElement('td');
                                     if (k !== 0) {
