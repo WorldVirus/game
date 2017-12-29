@@ -832,7 +832,7 @@ class Custom extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         super('div', ['win'], {});
     }
 
-    creation(text) {
+    creation(text, href) {
         const wrape = document.querySelector('div.wrapper');
         document.body.style.height = '100%';
         document.body.appendChild(this._element);
@@ -842,19 +842,14 @@ class Custom extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         document.querySelector('div.visible').innerHTML = `<h3>${text}</h3>`;
         this._element.style.top = Math.floor((window.innerHeight - this._element.offsetHeight) / 2) + 'px';
         this._element.style.left = Math.floor((window.innerWidth - this._element.offsetWidth) / 2) + 'px';
-        // visible.appendChildBlock('p',new Block('p',['link']));
-        // const button = document.querySelector('p');
-        // button.innerHTML = <a class="remove">Close</a>;
-        // document.querySelector('a.remove').addEventListener('click',() => {
-        //     document.querySelector('div.win').remove();
-        // })
-        // visible.appendChildBlock()
-        // authors.forEach((i) => {
-        //     this.appendChildBlock('li',new Block('li', [i.name]));
-        //     let but  =  document.querySelector('li.' + i.name);
-        //     but.innerHTML = <a>${i.name}</a>;
-        //     but.querySelector('a').setAttribute('href',i.link);
-        // });
+        if (href) {
+            visible.appendChildBlock('p', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('p', ['link']));
+            const button = document.querySelector('p');
+            button.innerHTML = `<a class="remove">Close</a>`;
+            document.querySelector('a.remove').addEventListener('click', () => {
+                document.querySelector('div.win').remove();
+            });
+        }
     }
 
 }
@@ -944,6 +939,7 @@ class GraphicEngine {
     //   chat.innerHTML += '<span style=\'color:' + 'white' + ';\'>' + (1 / deltaTime).toFixed(0) + '</span><br>';
     //   chat.scrollTop = chat.scrollHeight;
     // }
+    console.log("Demon render");
 
     __WEBPACK_IMPORTED_MODULE_2__Utils__["a" /* default */].resize(this.gl);
     this.gl.clearColor(0, 0, 0, 0);
@@ -1216,7 +1212,7 @@ class Http {
                     reject(xhr);
                     return;
                 }
-
+                console.log("XHR тратата " + xhr.status);
                 const response = JSON.parse(xhr.responseText);
                 resolve(response);
             };
@@ -2090,7 +2086,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".win {\n  position: absolute; }\n\n.overlay {\n  background: #000;\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  z-index: 1000;\n  opacity: .5; }\n\np {\n  margin-bottom: 1.3333em; }\n\n.visible {\n  color: white;\n  border-radius: 20px;\n  text-align: center; }\n", ""]);
+exports.push([module.i, ".win {\n  position: absolute; }\n\n.overlay {\n  background: #000;\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  z-index: 1000;\n  opacity: .5; }\n\np {\n  margin-bottom: 1.3333em; }\n\n.visible {\n  color: white;\n  border-radius: 5px;\n  text-align: center;\n  background: black;\n  padding: 5px;\n  border: 2px solid white; }\n", ""]);
 
 // exports
 
@@ -4454,7 +4450,7 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         left.innerHTML = 'DELETE';
 
         document.querySelector('a.delete').addEventListener('click', () => {
-            new __WEBPACK_IMPORTED_MODULE_2__custom_module_custom_module__["a" /* default */]().creation('Coming soon....');
+            new __WEBPACK_IMPORTED_MODULE_2__custom_module_custom_module__["a" /* default */]().creation('Coming soon....', true);
         });
         // this.appendChildBlock('new_character',new Block ('a',['new_character']).setText('CREATE'))
         // wrape.appendChild(this._element)
@@ -4464,7 +4460,7 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         newCharacter.setAttribute('class', 'new_character');
         newCharacter.innerHTML = 'CREATE';
         document.querySelector('a.new_character').addEventListener('click', () => {
-            new __WEBPACK_IMPORTED_MODULE_2__custom_module_custom_module__["a" /* default */]().creation('Coming soon....');
+            new __WEBPACK_IMPORTED_MODULE_2__custom_module_custom_module__["a" /* default */]().creation('Coming soon....', true);
         });
     }
     footbarCreate() {
@@ -4548,7 +4544,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(20) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(20) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 60%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: #c58818;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 41px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.name {\n  top: 31%;\n  margin-left: 80%;\n  color: #000; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .single {\n    font-size: 1.5em;\n    left: 40%; }\n  .multi {\n    font-size: 1.5em;\n    top: 73%;\n    left: 40%; } }\n", ""]);
+exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(20) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(20) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 52%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: #c58818;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 41px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.name {\n  top: 31%;\n  margin-left: 80%;\n  color: #000; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .single {\n    font-size: 1.5em;\n    left: 40%; }\n  .multi {\n    font-size: 1.5em;\n    top: 73%;\n    left: 40%; } }\n", ""]);
 
 // exports
 
@@ -4599,7 +4595,7 @@ class GameType {
             buttons[i].innerHTML = button[i];
         }
         document.querySelector('a.multi').addEventListener('click', () => {
-            new __WEBPACK_IMPORTED_MODULE_1__custom_module_custom_module__["a" /* default */]().creation('Coming soon....');
+            new __WEBPACK_IMPORTED_MODULE_1__custom_module_custom_module__["a" /* default */]().creation('Coming soon....', true);
         });
 
         document.querySelector('a.single').addEventListener('click', () => {

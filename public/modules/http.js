@@ -91,7 +91,7 @@ class Http {
                     reject(xhr);
                     return;
                 }
-
+                console.log("XHR тратата " + xhr.status);
                 const response = JSON.parse(xhr.responseText);
                 resolve(response);
             };
