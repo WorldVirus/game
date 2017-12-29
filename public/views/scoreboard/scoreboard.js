@@ -21,6 +21,7 @@ class Scoreboard extends Block {
             document.querySelector('div.menu').remove();
         }
         wrape.appendChild(this._element);
+        wrape.appendChild(new Image().src = '../images/arrow.png');
         this.appendChildBlock('table', new Block('table', ['table']));
 
         const table = new Block(document.querySelector('table.table'));

@@ -1212,7 +1212,6 @@ class Http {
                     reject(xhr);
                     return;
                 }
-                console.log("XHR тратата " + xhr.status);
                 const response = JSON.parse(xhr.responseText);
                 resolve(response);
             };
@@ -4254,7 +4253,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".score {\n  color: #FAE7B5; }\n\ntable {\n  background-color: #731509;\n  border-radius: 73px;\n  font-size: 2.1em;\n  width: 50%;\n  color: black;\n  padding: 10px;\n  border-spacing: 66px;\n  margin-left: 360px; }\n\ntable th {\n  color: #c58818; }\n\ntable tr:hover {\n  color: green; }\n\ntable.animated-button.thar-four:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #F7CA18;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n", ""]);
+exports.push([module.i, ".score {\n  color: #FAE7B5; }\n\ntable {\n  background-color: white;\n  border-radius: 20px;\n  font-size: 2em;\n  width: 50%;\n  color: black;\n  border-spacing: 30px;\n  margin: auto; }\n\ntable th {\n  color: #c58818;\n  text-align: left; }\n\ntable tr:hover {\n  color: #1800ff; }\n\ntable.animated-button.thar-four:before {\n  display: block;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  width: 0px;\n  z-index: -1;\n  content: '';\n  color: #000 !important;\n  background: #F7CA18;\n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1); }\n", ""]);
 
 // exports
 
