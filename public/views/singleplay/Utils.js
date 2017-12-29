@@ -1,8 +1,8 @@
 export default class Utils {
   static resize(gl) {
       if (window.location.pathname === '/singleplay') {
-          let displayWidth = window.screen.availWidth;
-          let displayHeight = window.screen.availHeight;
+          let displayWidth = window.screen.availWidth*window.devicePixelRatio;
+          let displayHeight = window.screen.availHeight*window.devicePixelRatio;
           if (gl.canvas.width !== displayWidth || gl.canvas.height !== displayHeight) {
               gl.canvas.width = displayWidth;
               gl.canvas.height = displayHeight;
