@@ -43,6 +43,7 @@ export default  class GraphicEngine {
     //   chat.innerHTML += '<span style=\'color:' + 'white' + ';\'>' + (1 / deltaTime).toFixed(0) + '</span><br>';
     //   chat.scrollTop = chat.scrollHeight;
     // }
+      console.log("Demon render");
 
     Utils.resize(this.gl);
     this.gl.clearColor(0, 0, 0, 0);

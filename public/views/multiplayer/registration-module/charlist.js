@@ -90,8 +90,8 @@ export default class Choose extends Block{
         left.innerHTML = 'DELETE';
 
         document.querySelector('a.delete').addEventListener('click', () => {
-            new Custom().creation('Coming soon....')
-        })
+            new Custom().creation('Coming soon....', true);
+        });
         // this.appendChildBlock('new_character',new Block ('a',['new_character']).setText('CREATE'))
         // wrape.appendChild(this._element)
 
@@ -101,7 +101,7 @@ export default class Choose extends Block{
         newCharacter.setAttribute('class','new_character');
         newCharacter.innerHTML = 'CREATE';
         document.querySelector('a.new_character').addEventListener('click', () => {
-            new Custom().creation('Coming soon....')
+            new Custom().creation('Coming soon....', true);
         })
 
     }

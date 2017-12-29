@@ -36,7 +36,7 @@ export default class GameType {
             buttons[i].innerHTML = button[i];
         }
         document.querySelector('a.multi').addEventListener('click',() =>{
-            new Custom().creation('Coming soon....')
+            new Custom().creation('Coming soon....', true);
         })
 
         document.querySelector('a.single').addEventListener('click',() =>{
