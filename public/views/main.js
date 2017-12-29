@@ -4,6 +4,7 @@ import RegistrationValidate from '../blocks/autheficate/registrationAuth';
 import LoginValidate from '../blocks/autheficate/loginAuth';
 
 import Router from "../modules/router";
+import Custom from "../views/custom-module/custom-module";
 
 import UserService from '../servises/user-service';
 import Mediator from '../modules/mediator'
@@ -62,6 +63,31 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              })
      });
  }
+
+if (window.innerHeight > window.innerWidth)
+// && ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)))
+{
+    if (document.querySelector('div#application'))
+        document.querySelector('div#application').style.display = 'none';
+    new Custom().creation('It is game only for laptop view, rotate your device');
+
+}
+
+window.addEventListener('resize', () => {
+    const div = document.querySelector('div.win');
+    if (div) {
+        if (document.querySelector('div#application'))
+            document.querySelector('div#application').style.display = 'block';
+        div.remove();
+    }
+    if (window.innerHeight > window.innerWidth) {
+        if (document.querySelector('div#application'))
+            document.querySelector('div#application').style.display = 'none';
+        new Custom().creation('It is game only for laptop view, rotate your device');
+    }
+});
+
+
 
 function setter(input) {
     console.log(input);

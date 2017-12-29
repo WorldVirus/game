@@ -144,10 +144,10 @@ export default class GameManager {
                 container.className = 'container';
             });
             document.getElementsByClassName('settings')[0].lastElementChild.lastElementChild.addEventListener('click', function () {
-                this.stop();
+                location.href = '/';
             }.bind(this));
             document.getElementsByClassName('settings')[0].lastElementChild.firstElementChild.nextElementSibling.addEventListener('click', function () {
-                this.stop();
+                location.reload();
             }.bind(this));
         }
     }
@@ -181,6 +181,18 @@ export default class GameManager {
         skillBar.style.backgroundSize = '100% 100%';
         skillBar.style.backgroundRepeat = 'no-repeat';
         document.getElementsByClassName('container')[0].appendChild(skillBar);
+
+        let infoBar = document.createElement('div');
+        infoBar.id = 'infoBar';
+        infoBar.style.position = 'absolute';
+        infoBar.style.right = '32.6vw';
+        infoBar.style.top = '7vh';
+        infoBar.style.width = '34.7vw';
+        infoBar.style.height = '7vh';
+        infoBar.style.backgroundColor = 'rgb(24, 120, 165)';
+        infoBar.style.border = '2px solid rgb(81, 224, 255)';
+        infoBar.style.borderRadius = '2px';
+        document.querySelector('.container').appendChild(infoBar);
 
         let chat = document.createElement('div');
         chat.style.position = 'absolute';

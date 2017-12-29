@@ -151,6 +151,7 @@ export default class UnitManager {
             skills[i].remove();
         }
         let activeSkillImg = document.getElementById('activeSkill');
+        document.getElementById('infoBar').innerHTML = unit.skills[0].getDesciption();
         if (!activeSkillImg) {
             activeSkillImg = document.createElement('img');
             activeSkillImg.id = 'activeSkill';
@@ -228,15 +229,18 @@ export default class UnitManager {
             return;
         }
         if (i === 0) {
+            document.getElementById('infoBar').innerHTML = this.currentUnit.skills[i].getDesciption();
             this.drawActiveTiles(this.path);
             this.massiveSkill = false;
         } else if (this.currentUnit.skills[i].typeOfArea === 'circle') {
+            document.getElementById('infoBar').innerHTML = this.currentUnit.skills[i].getDesciption();
             this.possibleMoves.forEach(function(move) {
                 global.tiledMap[move.xpos][move.ypos].active = false;
                 this.spriteManager.deleteSprite(move.id);
             }.bind(this));
             this.massiveSkill = true;
         } else {
+            document.getElementById('infoBar').innerHTML = this.currentUnit.skills[i].getDesciption();
             this.massiveSkill = false;
             let tiles = this.getActiveTiles(global.tiledMap[this.currentUnit.xpos][this.currentUnit.ypos], this.currentUnit.skills[i]);
             this.drawActiveTiles(tiles);
