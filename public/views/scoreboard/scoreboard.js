@@ -44,7 +44,7 @@ class Scoreboard extends Block {
         wrape.appendChild(arrows);
       //  this.appendChildBlock('table', new Block('table', ['table']));
 
-        const tabl = document.querySelector('div.score').appendChild('table');
+        const tabl = document.querySelector('div.score').appendChild(document.createElement('table'));
         tabl.setAttribute('class','table');
         let fun1 = function() {
             if (this.page > 1) {
