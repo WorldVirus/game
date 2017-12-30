@@ -138,7 +138,7 @@ class Scoreboard extends Block {
        // const table = new Block(document.querySelector('table.table'));
 const newT = document.querySelector('table.table');
 
-        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard/' + this.page;
+        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
         if (typeof window.fetch !== 'undefined') {
 
             fetch(url, {
