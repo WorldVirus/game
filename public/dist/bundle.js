@@ -4192,15 +4192,19 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
                         lastDisplay = document.getElementById(+lastDisplay.id - 1);
                     }
                 }
-                for (let i = +lastDisplay.id - 1; i > +lastDisplay - 6 && i > 0; i--) {
-                    document.getElementById(i).style.display = 'table-cell';
+                let flag = false;
+                for (let i = +lastDisplay.id - 1; i > +lastDisplay.id - 6 && i > 0; i--) {
+                    document.getElementById(i).style.display = '';
+                    flag = true;
                 }
-                for (let i = +lastDisplay; i < +lastDisplay + 5; i++) {
-                    let x = document.getElementById(i);
-                    if (x) {
-                        x.style.display = 'none';
-                    } else {
-                        break;
+                if (flag) {
+                    for (let i = +lastDisplay.id; i < +lastDisplay.id + 5; i++) {
+                        let x = document.getElementById(i);
+                        if (x) {
+                            x.style.display = 'none';
+                        } else {
+                            break;
+                        }
                     }
                 }
             }
@@ -4218,18 +4222,16 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
             if (lastDisplay) {
                 while (true) {
                     let x = document.getElementById(+lastDisplay.id + 1);
-                    console.log(x);
-                    console.log(x.style.display);
                     if (x && x.style.display == 'none') {
                         break;
                     } else {
                         lastDisplay = x;
                     }
                 }
-                for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay + 6; i++) {
-                    document.getElementById(i).style.display = 'table-cell';
+                for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay.id + 6; i++) {
+                    document.getElementById(i).style.display = '';
                 }
-                for (let i = +lastDisplay; i > 0 && document.getElementById(i).style.display !== 'none'; i--) {
+                for (let i = +lastDisplay.id; i > 0 && document.getElementById(i).style.display !== 'none'; i--) {
                     let x = document.getElementById(i);
                     if (x) {
                         x.style.display = 'none';

@@ -54,15 +54,19 @@ class Scoreboard extends Block {
                         lastDisplay = document.getElementById(+lastDisplay.id - 1);
                     }
                 }
+                let flag = false;
                 for (let i = +lastDisplay.id - 1; i > +lastDisplay.id - 6 && i > 0; i--) {
                     document.getElementById(i).style.display = '';
+                    flag = true;
                 }
-                for (let i = +lastDisplay.id; i < +lastDisplay.id + 5; i++) {
-                    let x = document.getElementById(i);
-                    if (x) {
-                        x.style.display = 'none';
-                    } else {
-                        break;
+                if (flag) {
+                    for (let i = +lastDisplay.id; i < +lastDisplay.id + 5; i++) {
+                        let x = document.getElementById(i);
+                        if (x) {
+                            x.style.display = 'none';
+                        } else {
+                            break;
+                        }
                     }
                 }
             }
@@ -80,8 +84,6 @@ class Scoreboard extends Block {
             if (lastDisplay) {
                 while(true) {
                     let x = document.getElementById(+lastDisplay.id + 1);
-                    console.log(x);
-                    console.log(x.style.display);
                     if (x && x.style.display == 'none') {
                         break;
                     } else {
