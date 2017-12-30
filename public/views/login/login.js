@@ -70,4 +70,9 @@ class Login extends Block {
     }
 }
 
+function setter(input) {
+    console.log(input);
+    return String(input);
+}
+
 export default Login;
