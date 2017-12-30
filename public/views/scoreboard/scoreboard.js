@@ -54,10 +54,10 @@ class Scoreboard extends Block {
                         lastDisplay = document.getElementById(+lastDisplay.id - 1);
                     }
                 }
-                for (let i = +lastDisplay.id - 1; i > +lastDisplay - 6 && i > 0; i--) {
+                for (let i = +lastDisplay.id - 1; i > +lastDisplay.id - 6 && i > 0; i--) {
                     document.getElementById(i).style.display = 'table-cell';
                 }
-                for (let i = +lastDisplay; i < +lastDisplay + 5; i++) {
+                for (let i = +lastDisplay.id; i < +lastDisplay.id + 5; i++) {
                     let x = document.getElementById(i);
                     if (x) {
                         x.style.display = 'none';
@@ -88,10 +88,10 @@ class Scoreboard extends Block {
                         lastDisplay = x;
                     }
                 }
-                for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay + 6; i++) {
+                for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay.id + 6; i++) {
                     document.getElementById(i).style.display = 'table-cell';
                 }
-                for (let i = +lastDisplay; i > 0 && document.getElementById(i).style.display !== 'none'; i--) {
+                for (let i = +lastDisplay.id; i > 0 && document.getElementById(i).style.display !== 'none'; i--) {
                     let x = document.getElementById(i);
                     if (x) {
                         x.style.display = 'none';
