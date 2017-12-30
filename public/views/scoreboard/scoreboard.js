@@ -160,7 +160,7 @@ const newT = document.querySelector('table.table');
                         for (let i = 0; i < data.length +1; ++i) {
                            // table.appendChildBlock('data', new Block('tr', ['data']))
                             let n = newT.appendChild(document.createElement('tr'));
-                            n.setAttribute('tr','data');
+                            n.setAttribute('class','data');
                         }
                         const array = document.getElementsByTagName('tr');
                         let value = array[0];
