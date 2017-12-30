@@ -41,7 +41,7 @@ class Scoreboard extends Block {
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {
-                if (arr[i].style.display !== 'none') {
+                if (arr[i].style.display !== 'none' && arr[i].id) {
                     lastDisplay = arr[i];
                     break;
                 }
@@ -72,14 +72,14 @@ class Scoreboard extends Block {
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {
-                if (arr[i].style.display !== 'none') {
+                if (arr[i].style.display !== 'none' && arr[i].id) {
                     lastDisplay = arr[i];
                     break;
                 }
             }
             if (lastDisplay) {
                 while(true) {
-                    let x = document.getElementById(lastDisplay.id + 1);
+                    let x = document.getElementById(+lastDisplay.id + 1);
                     if (x && x.style.display === 'none') {
                         break;
                     } else {
