@@ -16,7 +16,7 @@ class Scoreboard extends Block {
 
     creation() {
         this.page = 1;
-        window.history.pushState({}, '', '/scoreboard/1');
+       // window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
         if (document.querySelector('div.menu')) {
