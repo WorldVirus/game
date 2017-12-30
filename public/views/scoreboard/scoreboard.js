@@ -39,7 +39,13 @@ class Scoreboard extends Block {
 
         let fun1 = function() {
             let arr = document.getElementsByTagName('tr');
-            let lastDisplay = arr.some((item) => item.style.display !== 'none');
+            let lastDisplay;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].style.display !== 'none') {
+                    lastDisplay = arr[i];
+                    break;
+                }
+            }
             if (lastDisplay) {
                 while(true) {
                     if (+lastDisplay.id - 1 == 0 || document.getElementById(+lastDisplay.id - 1).style.display === 'none') {
@@ -64,7 +70,13 @@ class Scoreboard extends Block {
 
         let fun2 = function() {
             let arr = document.getElementsByTagName('tr');
-            let lastDisplay = arr.some((item) => item.style.display !== 'none');
+            let lastDisplay;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].style.display !== 'none') {
+                    lastDisplay = arr[i];
+                    break;
+                }
+            }
             if (lastDisplay) {
                 while(true) {
                     let x = document.getElementById(lastDisplay.id + 1);
