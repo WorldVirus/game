@@ -119,6 +119,11 @@ export default class Choose extends Block{
         a.setAttribute('class','back');
         a.setAttribute('value','/');
         a.innerHTML = 'LOGOUT';
+        a.addEventListener('click', function() {
+            deleteCookie('username');
+            deleteCookie('password');
+            new UserService().logout(getCookie('username'), getCookie('password'));
+        });
         const enter=document.querySelector('div.choose');
         enter.setAttribute('class','enter');
         enter.setAttribute('value','/mode');
@@ -143,4 +148,46 @@ export default class Choose extends Block{
         value.setAttribute('src',enity[0].src);
 
     }
+}
+
+function setCookie(name, value, options) {
+    options = options || {};
+
+    var expires = options.expires;
+
+    if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+    }
+    if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+    }
+
+    value = encodeURIComponent(value);
+
+    var updatedCookie = name + "=" + value;
+
+    for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+            updatedCookie += "=" + propValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
+}
+
+function deleteCookie(name) {
+    setCookie(name, "", {
+        expires: -1
+    })
+}
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
 }
