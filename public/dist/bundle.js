@@ -2089,6 +2089,9 @@ const typeGame = new __WEBPACK_IMPORTED_MODULE_8__views_multiplayer_choose_choos
 //     });
 
 const router = new __WEBPACK_IMPORTED_MODULE_0__modules_router__["default"]();
+for (let i = 0; i < 100; ++i) {
+    router.register(`/scoreboard/${i}`, scoreboard);
+}
 router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info).register('/singleplay', single).register('/game', choose).register('/scoreboard', scoreboard).register('/mode', typeGame).navigate();
 
 /***/ }),
