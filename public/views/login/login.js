@@ -39,7 +39,7 @@ class Login extends Block {
 
         if (document.cookie) {
             const wrapper = new Block('div', ['wrapper']);
-            wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])))
+            wrapper.appendChildBlock('name',new Block('div',['user']).setText(getCookie('username')))
             let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
                 userService.logout(formdata[0],formdata[1]);
@@ -74,5 +74,13 @@ function setter(input) {
     console.log(input);
     return String(input);
 }
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 
 export default Login;
