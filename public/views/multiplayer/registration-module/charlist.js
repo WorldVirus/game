@@ -114,6 +114,7 @@ export default class Choose extends Block{
         // this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
         // wrape.appendChild(this._element)
         // document.querySelector('a.back').setAttribute('value','/')
+        const enter=document.querySelector('div.choose');
         enter.setAttribute('class','enter');
         enter.setAttribute('value','/mode');
         enter.innerHTML = 'ENTER';
