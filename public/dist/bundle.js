@@ -149,7 +149,7 @@ class Block {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_custom_module_custom_module__ = __webpack_require__(7);
 
 
@@ -891,6 +891,79 @@ if(false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
+
+
+
+/**
+ * Сервис для работы с пользователями
+ * @class UserService
+ */
+class UserService {
+  constructor() {
+    /**
+     * Закомментить для обращения к серверу node.js
+     */
+    __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].BaseUrl = 'https://kvvartet2017.herokuapp.com';
+  }
+
+  /**
+   * Регистрирует нового пользователя
+   * @param {string} email
+   * @param {string} password
+   * @param {string} username
+   * @return {Promise}
+   */
+  signup(username, email, password) {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signup', { username, email, password });
+  }
+
+  /**
+   * Авторизация пользователя
+   * @param {string} username
+   * @param {string} password
+   * @return {Promise}
+   */
+  login(username, password) {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signin', { username, password });
+  }
+
+  /**
+   * Проверяет, авторизован ли пользователь
+   * @return {boolean}
+   */
+  isLoggedIn() {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/currentUser');
+  }
+
+  /**
+   * Выход пользователя
+   * @return {Promise}
+   */
+  logout(username, password) {
+    console.log('logout work');
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', { username, password });
+  }
+
+  /**
+   * Загружает scoreboard
+   * @return {Promise}
+   */
+
+  scores() {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Get('/scoreboard');
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (UserService);
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shaders__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Program__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils__ = __webpack_require__(5);
@@ -966,7 +1039,7 @@ class GraphicEngine {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1013,7 +1086,7 @@ class Loader {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1026,7 +1099,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_custom_module_custom_module__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__servises_user_service__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__servises_user_service__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_mediator__ = __webpack_require__(14);
 
 
@@ -1063,14 +1136,8 @@ function signin(login) {
 
         userService.login(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
             wrapper.appendChildBlock('name', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['user']).setText(setter(formdata[0])));
-            let logout = document.querySelector('a.back');
             document.cookie = 'username' + '=' + formdata[0];
             document.cookie = 'password' + '=' + formdata[1];
-            logout.addEventListener('click', function () {
-                deleteCookie('username');
-                deleteCookie('password');
-                userService.logout(formdata[0], formdata[1]);
-            });
         }).then(() => new __WEBPACK_IMPORTED_MODULE_6__modules_mediator__["default"]().publish('VIEW_LOAD'));
     });
 }
@@ -1083,14 +1150,8 @@ function signup(registration) {
         }
         userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
             wrapper.appendChildBlock('name', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['user']).setText(setter(formdata[0])));
-            let logout = document.querySelector('a.back');
             document.cookie = 'username' + '=' + formdata[0];
             document.cookie = 'password' + '=' + formdata[1];
-            logout.addEventListener('click', function () {
-                deleteCookie('username');
-                deleteCookie('password');
-                userService.logout(formdata[0], formdata[1]);
-            });
         });
     });
 }
@@ -1160,79 +1221,6 @@ function getCookie(name) {
 }
 
 
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
-
-
-
-/**
- * Сервис для работы с пользователями
- * @class UserService
- */
-class UserService {
-  constructor() {
-    /**
-     * Закомментить для обращения к серверу node.js
-     */
-    __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].BaseUrl = 'https://kvvartet2017.herokuapp.com';
-  }
-
-  /**
-   * Регистрирует нового пользователя
-   * @param {string} email
-   * @param {string} password
-   * @param {string} username
-   * @return {Promise}
-   */
-  signup(username, email, password) {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signup', { username, email, password });
-  }
-
-  /**
-   * Авторизация пользователя
-   * @param {string} username
-   * @param {string} password
-   * @return {Promise}
-   */
-  login(username, password) {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signin', { username, password });
-  }
-
-  /**
-   * Проверяет, авторизован ли пользователь
-   * @return {boolean}
-   */
-  isLoggedIn() {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/currentUser');
-  }
-
-  /**
-   * Выход пользователя
-   * @return {Promise}
-   */
-  logout(username, password) {
-    console.log('logout work');
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', { username, password });
-  }
-
-  /**
-   * Загружает scoreboard
-   * @return {Promise}
-   */
-
-  scores() {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Get('/scoreboard');
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (UserService);
 
 /***/ }),
 /* 13 */
@@ -2075,7 +2063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function requireAll(r) {
     r.keys().forEach(r);
 }
-__webpack_require__(11);
+__webpack_require__(12);
 __webpack_require__(64);
 
 requireAll(__webpack_require__(69));
@@ -2315,7 +2303,7 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__main_page_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servises_user_service__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servises_user_service__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__singleplay_DemoGameModule__ = __webpack_require__(15);
 
 
@@ -2407,7 +2395,7 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
             allButtons[i].querySelector('li').setAttribute('value', valuePage[i]);
         }
 
-        if (document.cookie) {
+        if (document.cookie && !document.getElementById('user-menu')) {
             let username = getCookie('username');
             let email = getCookie('email');
             document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
@@ -2803,9 +2791,9 @@ class Pathfinding {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(9);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(11);
 
 
 
@@ -3180,9 +3168,9 @@ class DungeonMapMaker {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(9);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SpriteManager__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AnimationManager__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UnitManager__ = __webpack_require__(43);
@@ -4149,6 +4137,8 @@ class Registration extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* defaul
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__info_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servises_user_service__ = __webpack_require__(9);
+
 
 
 
@@ -4190,6 +4180,19 @@ class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
             allButtons[i].querySelector('a').setAttribute('href', authors[i].link);
         }
 
+        // if (document.cookie) {
+        //     let username = getCookie('username');
+        //     let email = getCookie('email');
+        //     document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+        //     </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
+        //     document.getElementById('logout').addEventListener('click', function() {
+        //         deleteCookie('username');
+        //         deleteCookie('password');
+        //         document.getElementById('user-menu').remove();
+        //         new UserService().logout(username, email);
+        //     });
+        // }
+
         // wrape.appendChild(this._element);
         //
         // authors.forEach((i) => {
@@ -4201,6 +4204,49 @@ class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     }
 
 }
+
+// function setCookie(name, value, options) {
+//     options = options || {};
+//
+//     var expires = options.expires;
+//
+//     if (typeof expires == "number" && expires) {
+//         var d = new Date();
+//         d.setTime(d.getTime() + expires * 1000);
+//         expires = options.expires = d;
+//     }
+//     if (expires && expires.toUTCString) {
+//         options.expires = expires.toUTCString();
+//     }
+//
+//     value = encodeURIComponent(value);
+//
+//     var updatedCookie = name + "=" + value;
+//
+//     for (var propName in options) {
+//         updatedCookie += "; " + propName;
+//         var propValue = options[propName];
+//         if (propValue !== true) {
+//             updatedCookie += "=" + propValue;
+//         }
+//     }
+//
+//     document.cookie = updatedCookie;
+// }
+//
+// function deleteCookie(name) {
+//     setCookie(name, "", {
+//         expires: -1
+//     })
+// }
+//
+// function getCookie(name) {
+//     var matches = document.cookie.match(new RegExp(
+//         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+//     ));
+//     return matches ? decodeURIComponent(matches[1]) : undefined;
+// }
+
 /* harmony default export */ __webpack_exports__["a"] = (Info);
 
 /***/ }),
@@ -4277,7 +4323,7 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
         window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
-        if (document.querySelector('div.menu') !== undefined) {
+        if (document.querySelector('div.menu')) {
             document.querySelector('div.menu').remove();
         }
         wrape.appendChild(this._element);
@@ -4439,9 +4485,65 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
                 });
             });
         }
+
+        // if (document.cookie) {
+        //     let username = getCookie('username');
+        //     let email = getCookie('email');
+        //     document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+        //     </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
+        //     document.getElementById('logout').addEventListener('click', function() {
+        //         deleteCookie('username');
+        //         deleteCookie('password');
+        //         document.getElementById('user-menu').remove();
+        //         new UserService().logout(username, email);
+        //     });
+        // }
     }
 
 }
+
+// function setCookie(name, value, options) {
+//     options = options || {};
+//
+//     var expires = options.expires;
+//
+//     if (typeof expires == "number" && expires) {
+//         var d = new Date();
+//         d.setTime(d.getTime() + expires * 1000);
+//         expires = options.expires = d;
+//     }
+//     if (expires && expires.toUTCString) {
+//         options.expires = expires.toUTCString();
+//     }
+//
+//     value = encodeURIComponent(value);
+//
+//     var updatedCookie = name + "=" + value;
+//
+//     for (var propName in options) {
+//         updatedCookie += "; " + propName;
+//         var propValue = options[propName];
+//         if (propValue !== true) {
+//             updatedCookie += "=" + propValue;
+//         }
+//     }
+//
+//     document.cookie = updatedCookie;
+// }
+//
+// function deleteCookie(name) {
+//     setCookie(name, "", {
+//         expires: -1
+//     })
+// }
+//
+// function getCookie(name) {
+//     var matches = document.cookie.match(new RegExp(
+//         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+//     ));
+//     return matches ? decodeURIComponent(matches[1]) : undefined;
+// }
+
 /* harmony default export */ __webpack_exports__["a"] = (Scoreboard);
 
 /***/ }),
@@ -4525,9 +4627,9 @@ class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(9);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(11);
 
 
 
@@ -4734,6 +4836,19 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         this.choose();
         let value = document.querySelector('img.person');
         value.setAttribute('src', enity[0].src);
+
+        if (document.cookie && !document.getElementById('user-menu')) {
+            let username = getCookie('username');
+            let email = getCookie('email');
+            document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+            </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
+            document.getElementById('logout').addEventListener('click', function () {
+                deleteCookie('username');
+                deleteCookie('password');
+                document.getElementById('user-menu').remove();
+                new UserService().logout(username, email);
+            });
+        }
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Choose;
