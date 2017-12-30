@@ -95,7 +95,7 @@ export class MainPage extends Block {
             allButtons[i].querySelector('li').setAttribute('value',valuePage[i])
         }
 
-        if (document.cookie) {
+        if (document.cookie && !document.getElementById('user-menu')) {
             let username = getCookie('username');
             let email = getCookie('email');
             document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
