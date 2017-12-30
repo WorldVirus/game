@@ -3935,7 +3935,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".menu form {\n  width: 350px; }\n\n.menu input {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.menu input:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n\n.message-error {\n  margin-left: 10px;\n  color: red;\n  font-size: 25px;\n  font-family: fantasy; }\n", ""]);
+exports.push([module.i, ".menu form {\n  width: 350px; }\n\n.menu input {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.menu input:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n\n.message-error {\n  margin-left: 10px;\n  color: red;\n  font-size: 25px;\n  font-family: fantasy; }\n\n.message-error p {\n  margin-top: -5px; }\n", ""]);
 
 // exports
 
@@ -4175,6 +4175,60 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
         wrape.appendChild(arrows);
         this.appendChildBlock('table', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('table', ['table']));
 
+        let fun1 = function () {
+            let arr = document.getElementsByTagName('tr');
+            let lastDisplay = arr.some(item => item.style.display !== 'none');
+            if (lastDisplay) {
+                while (true) {
+                    if (+lastDisplay.id - 1 == 0 || document.getElementById(+lastDisplay.id - 1).style.display === 'none') {
+                        break;
+                    } else {
+                        lastDisplay = document.getElementById(+lastDisplay.id - 1);
+                    }
+                }
+                for (let i = +lastDisplay.id - 1; i > +lastDisplay - 6 && i > 0; i--) {
+                    document.getElementById(i).style.display = 'table-cell';
+                }
+                for (let i = +lastDisplay; i < +lastDisplay + 5; i++) {
+                    let x = document.getElementById(i);
+                    if (x) {
+                        x.style.display = 'none';
+                    } else {
+                        break;
+                    }
+                }
+            }
+        };
+
+        let fun2 = function () {
+            let arr = document.getElementsByTagName('tr');
+            let lastDisplay = arr.some(item => item.style.display !== 'none');
+            if (lastDisplay) {
+                while (true) {
+                    let x = document.getElementById(lastDisplay.id + 1);
+                    if (x && x.style.display === 'none') {
+                        break;
+                    } else {
+                        lastDisplay = x;
+                    }
+                }
+                for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay + 6; i++) {
+                    document.getElementById(i).style.display = 'table-cell';
+                }
+                for (let i = +lastDisplay; i > 0 && document.getElementById(i).style.display !== 'none'; i--) {
+                    let x = document.getElementById(i);
+                    if (x) {
+                        x.style.display = 'none';
+                    } else {
+                        break;
+                    }
+                }
+            }
+        };
+
+        img1.onclick = fun2;
+        img2.onclick = fun1;
+
         const table = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.querySelector('table.table'));
 
         const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
@@ -4207,11 +4261,12 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
                     }
 
                     for (let k = 0; k < Math.ceil(data.length / 5); k++) {
-                        for (let i = 1 + k * 5; i < 1 + (k + 1) * 5; ++i) {
+                        for (let i = 1 + k * 5; i <= data.length && i <= (k + 1) * 5; ++i) {
                             for (let j = 0; j < 3; ++j) {
                                 let el = document.createElement('td');
-                                if (k !== 0) {
+                                if (i > 5) {
                                     el.style.display = 'none';
+                                    el.id = i;
                                 }
                                 array[i].appendChild(el);
                                 if (j === 1) {

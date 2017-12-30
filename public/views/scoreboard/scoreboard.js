@@ -39,13 +39,24 @@ class Scoreboard extends Block {
 
         let fun1 = function() {
             let arr = document.getElementsByTagName('tr');
-            for (let i = 0; i < arr.length; i++) {
-                if (arr[i].style.display !== 'none') {
-                    for (let j = i - 1; j >= 0 && j >= i - 5; j--) {
-                        arr[j].style.display = 'table-cell';
+            let lastDisplay = arr.some((item) => item.style.display !== 'none');
+            if (lastDisplay) {
+                while(true) {
+                    if (+lastDisplay.id - 1 == 0 || document.getElementById(+lastDisplay.id - 1).style.display === 'none') {
+                        break;
+                    } else {
+                        lastDisplay = document.getElementById(+lastDisplay.id - 1);
                     }
-                    for (let j = i; j < arr.length && j < i + 5; j++) {
-                        arr[j].style.display = 'none';
+                }
+                for (let i = +lastDisplay.id - 1; i > +lastDisplay - 6 && i > 0; i--) {
+                    document.getElementById(i).style.display = 'table-cell';
+                }
+                for (let i = +lastDisplay; i < +lastDisplay + 5; i++) {
+                    let x = document.getElementById(i);
+                    if (x) {
+                        x.style.display = 'none';
+                    } else {
+                        break;
                     }
                 }
             }
@@ -53,20 +64,32 @@ class Scoreboard extends Block {
 
         let fun2 = function() {
             let arr = document.getElementsByTagName('tr');
-            for (let i = 0; i < arr.length; i++) {
-                if (arr[i].style.display !== 'none') {
-                    for (let j = i + 5; j < arr.length && j < i + 10; j++) {
-                        arr[j].style.display = 'table-cell';
+            let lastDisplay = arr.some((item) => item.style.display !== 'none');
+            if (lastDisplay) {
+                while(true) {
+                    let x = document.getElementById(lastDisplay.id + 1);
+                    if (x && x.style.display === 'none') {
+                        break;
+                    } else {
+                        lastDisplay = x;
                     }
-                    for (let j = i; j < arr.length && j < i + 5; j++) {
-                        arr[j].style.display = 'none';
+                }
+                for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay + 6; i++) {
+                    document.getElementById(i).style.display = 'table-cell';
+                }
+                for (let i = +lastDisplay; i > 0 && document.getElementById(i).style.display !== 'none'; i--) {
+                    let x = document.getElementById(i);
+                    if (x) {
+                        x.style.display = 'none';
+                    } else {
+                        break;
                     }
                 }
             }
         };
 
-        img1.onclick = fun1;
-        img2.onclick = fun2;
+        img1.onclick = fun2;
+        img2.onclick = fun1;
 
         const table = new Block(document.querySelector('table.table'));
 
@@ -107,6 +130,7 @@ class Scoreboard extends Block {
                                     let el = document.createElement('td');
                                     if (i > 5) {
                                         el.style.display = 'none';
+                                        el.id = i;
                                     }
                                     array[i].appendChild(el);
                                     if (j === 1) {
