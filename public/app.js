@@ -50,7 +50,11 @@ router.register('/', mainMenu)
     .register('/info', info)
     .register('/singleplay',single )
     .register('/game',choose)
-    .register('/scoreboard',scoreboard)
+     .register('/scoreboard',scoreboard)
+    .register('/scoreboard/1',scoreboard)
+    .register('/scoreboard/2',scoreboard)
+    .register('/scoreboard/3',scoreboard)
+
     .register('/mode',typeGame)
     .navigate();
 
