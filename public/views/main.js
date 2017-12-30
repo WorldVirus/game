@@ -36,6 +36,8 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             .then(() => new Router().go('/game'))
             .then(() => {
                 wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
+                document.cookie = 'username' + '=' + formdata[0];
+                document.cookie = 'password' + '=' + formdata[1];
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
     });
@@ -51,6 +53,8 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              .then(() => new Router().go('/game'))
               .then(() => {
                   wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
+                  document.cookie = 'username' + '=' + formdata[0];
+                  document.cookie = 'password' + '=' + formdata[1];
              })
      });
  }
