@@ -38,6 +38,7 @@ class Login extends Block {
     creation() {
 
         if (document.cookie) {
+            const wrapper = new Block('div', ['wrapper']);
             wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])))
             let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
