@@ -94,17 +94,17 @@ export class MainPage extends Block {
             allButtons[i].innerHTML = `<li>${text[i]}</li>`
             allButtons[i].querySelector('li').setAttribute('value',valuePage[i])
         }
-        if (document.cookie) {
-            let username = getCookie('username');
-            let email = getCookie('email');
-            document.body.innerHTML += `<div style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
-            </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
-            document.getElementById('logout').addEventListener('click', function() {
-                deleteCookie('username');
-                deleteCookie('email');
-                new UserService().logout(username, email);
-            });
-        }
+        // if (document.cookie) {
+        //     let username = getCookie('username');
+        //     let email = getCookie('email');
+        //     document.body.innerHTML += `<div style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+        //     </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
+        //     document.getElementById('logout').addEventListener('click', function() {
+        //         deleteCookie('username');
+        //         deleteCookie('email');
+        //         new UserService().logout(username, email);
+        //     });
+        // }
     }
  }
 
