@@ -94,7 +94,7 @@ export class MainPage extends Block {
             allButtons[i].querySelector('li').setAttribute('value',valuePage[i])
         }
         if (document.cookie) {
-            let username = document.cookie.substring(0, document.cookie.indexOf('='));
+            let username = document.cookie.substring(document.cookie.indexOf('=') + 1, document.cookie.length);
             document.body.innerHTML += `<div style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}</p><a style="margin: 4px;">Logut</a></div>`;
         }
     }
