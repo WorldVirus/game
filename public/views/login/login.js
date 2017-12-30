@@ -37,6 +37,8 @@ class Login extends Block {
 
     creation() {
 
+        console.log(document.cookie);
+
         const wrappe = document.querySelector('div.menu');
         if (wrappe.childNodes[0] !== undefined) {
             wrappe.removeChild(wrappe.childNodes[0])
