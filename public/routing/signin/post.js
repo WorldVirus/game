@@ -16,4 +16,5 @@ exports.post =  (req, res) => {
     res.cookie('cookie', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
     document.cookie = 'sessionid=' + id;
     res.status(201).json({id});
+    console.log('Я в signup/signin');
 };
