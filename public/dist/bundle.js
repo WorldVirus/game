@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -272,7 +272,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(26);
+var	fixUrls = __webpack_require__(27);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -821,7 +821,7 @@ class Validate {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_scss__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_scss__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__custom_module_scss__);
 
 
@@ -1022,12 +1022,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setter", function() { return setter; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_custom_module_custom_module__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__servises_user_service__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_mediator__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__servises_user_service__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_mediator__ = __webpack_require__(14);
 
 
 
@@ -1118,6 +1118,79 @@ function setter(input) {
 
 /***/ }),
 /* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
+
+
+
+/**
+ * Сервис для работы с пользователями
+ * @class UserService
+ */
+class UserService {
+  constructor() {
+    /**
+     * Закомментить для обращения к серверу node.js
+     */
+    __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].BaseUrl = 'https://kvvartet2017.herokuapp.com';
+  }
+
+  /**
+   * Регистрирует нового пользователя
+   * @param {string} email
+   * @param {string} password
+   * @param {string} username
+   * @return {Promise}
+   */
+  signup(username, email, password) {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signup', { username, email, password });
+  }
+
+  /**
+   * Авторизация пользователя
+   * @param {string} username
+   * @param {string} password
+   * @return {Promise}
+   */
+  login(username, password) {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signin', { username, password });
+  }
+
+  /**
+   * Проверяет, авторизован ли пользователь
+   * @return {boolean}
+   */
+  isLoggedIn() {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/currentUser');
+  }
+
+  /**
+   * Выход пользователя
+   * @return {Promise}
+   */
+  logout(username, password) {
+    console.log('logout work');
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', { username, password });
+  }
+
+  /**
+   * Загружает scoreboard
+   * @return {Promise}
+   */
+
+  scores() {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Get('/scoreboard');
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (UserService);
+
+/***/ }),
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1315,7 +1388,7 @@ Http.BaseUrl = null;
 /* harmony default export */ __webpack_exports__["default"] = (Http);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1365,7 +1438,7 @@ class Mediator {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1720,7 +1793,7 @@ class DemoGameModule {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1756,7 +1829,7 @@ class Skill {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1788,12 +1861,12 @@ class Tile {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Skill_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Skill_js__ = __webpack_require__(16);
 
 
 class Action {
@@ -1825,7 +1898,7 @@ class Action {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1901,11 +1974,11 @@ class Generator {
 /* harmony default export */ __webpack_exports__["a"] = (Generator);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block_block__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block_block__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_scss__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__forms_scss__);
 
@@ -1921,13 +1994,13 @@ class Input extends __WEBPACK_IMPORTED_MODULE_0__block_block__["a" /* default */
 /* harmony default export */ __webpack_exports__["a"] = (Input);
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wgARCAFSAVIDASIAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAgJAQcDBQYCBP/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAZ/AAAAAAAAAAAAAAAAHVnZ6ainBw3hbvCqcYABhkAAAAAAAAAAAAAAAMdBXYSyrM1x8De2nbnTY/MAAAAAAAAAAAAAAAAA8geujFEyKZ7bxADfBKOcXFzBjIAAAAAAAAAAAAAAA+fAVnktK5fMAADtLnY1TiAAAGMjDIAAAAAAAAAAGqTZ8KooaMO46cAAG+NOXOGx+YAAAAAAMZAAAAAAAYM/i09WSSngZ+EAAADfBKScXDzAAAAAAAAAAAAABiO5vOvqMGuzn4AAAAA7S56NU4QAAAAAAAAAAAAYM+bj5WySRh/8AIAAAAAb601c8bF5gAAAAAAAAAAAPiHZJOtmPvnQAAAAAAb6JSzf4uUAAAAAAAAAAH5z9GuIwV+G8Y8gAAAAAAB2tz8XZ2AAAAAAAAAAAGKvLQ6wyHwAAAAAAAGcC6XbOpdtAAAAAAAAAAADh5hB+ve+jXJSOkHHwAAAAAAAsNnhQrc+bMAAAAAAAAAAAABxw2maKHuivDrQI1gAAAAAb80GL+eWE02QAAAAAAAAAAAAB8/QiJXDez48oxSniwAAAAAdxdHSJIgt2fH2AAAAAAAAAAAAAAYivKkUY+PvXrhIjM4AAAALM5l0P3SnuwAAAAAAAAAAAAAAMZEaa0bxOgKIEy4bnwAABJSNYv8+ohS9AAAAAAAAAAAAAAAGMjEepDCkXXd89epCJy8QAB6W6ajSUJa6xkAAAAAAAAAAAAAAAAYyNEVk3W9aUJp4QXPzgAtOlhRXdQesAAAAAAAAABjIAAAAAAAY01uYUv6hvxggV+v3fhEr4oC/3MXZRAAAAAAAAAAAAAAAAAADGRqasa5LgKCFitfp3901E8vC0JjIAAAAAAAAAAAAAAAAAAA1ls0U/aDv4hcbBkrStdAfpAABjIMAyGMhgGQAAAYyAAAAAAADARakoHZAAA//EACYQAAIBAwQCAwADAQAAAAAAAAYHBQMECAABAkAwUBUWIBAXMRH/2gAIAQEAAQUC9G0niEqy3MWuyXiRRltyso700xNRI/HN7Lq6vdXV3dX9ziQn/i7H0zZyHDFhxYrYNGfIaQCmqtMyoUKVtR9ISlEAIRLdyznCTXOpUq89QkNIEMspVxHq8M9I3MnBJfaOWGWsWW/nElP/ABVh6MyOhYBiW7lIUnGt999/xj+pqzRMre3o2tD0PLltx2b2Vg6I6LDIlOJb8QsNIkMsplxHK8N9Cfs4NWsa3MkTBlb/AKxJT/xNh6CvcULWi3cuIuG1OkE0TSX6x/U1ZpGVChRtqPfZrjC1ZYtd+mjSrfuEhpEhl1MuI5Xhvev5Cxi7NuZe7cdSMnIS994MSE/8TH95qvgKVlBnOc1ad54cf1LVaRlQoUraj3JqdhxyObmXUjKaubm4vK/hhIeRIZZTriOV4d3G1kaGrTiwmiYs2S8eJCg+Kj+2UFw4FxTeyvnyrXPnyqcvHj8pazRMaFCjbUez/wB03MohQC0aHxWwZXyQcLJEUuqFxGq8O7Jufii9iG5lAVn3nxJT/wARHdjnz4U+LdyxgRfROVkJlLebH5SVWkY0aNK3pddhtUNWUa2sizJmc/PBw0iRS6oXMasA3rXNzb2dBu5c2MbqanJcikehh2sLShGdfK1qTM8Z9Hb/AFF2XGPUPW31lappqEL+jtpFX/CRUPXr0KNzRbuI0dLam4KYHJLoYdtC152HZYisDmdGNvHYxWPPzwsxIj8spmNHs8M7NSnTq8G9ibCkuiIZnxOU82PjaqK4yo1adel2jxbiDHi25jUXLjz4lN/5yL7fLjty2b+Ko6YaKw8jCZfyD89JjE0r2DGMwO7hkBix/Et7F4pA/Ljm3OSzMOHPjU491vYuix3o0BCkAl/Hic3/ALLCd4sDhs4iG/isRBut9t9vEMkcqJTy4PIpkCPfbuNQkx9Ha4L1zKeHGpu/1uXceW3LbvkYuPl0W3sTZsa250+dLn4MVG/9vHvQtzHUOZvBhq4wWUn+xAplgsjADWKYQn6GbgocjjW9iRJQ+q1CtbVf1jE3v6+KvRthABbSospQmaukP1i03/u4z6OViIycsG9iLcWmrq0urG4/AUXy4ITBBhEHgz6Rpo4Lats0EqaKu7/GLTe+kE/pb+PsZSzb2Ie3LUjGyERe/wAf5rGFvbH4r6ZmpkKadk1UQaKu4/gBNZZfFYeVRJsOemuba3vKDexGs5DUxDSkBI6xUb308i9Qx1KGtCObWPhmsKu2+/HfGpu7McS9RWo0rik3sSomd0LTJekWFZ3VK+tPU5YxsdcLqI4cacV+f//EABQRAQAAAAAAAAAAAAAAAAAAAID/2gAIAQMBAT8Bcn//xAAUEQEAAAAAAAAAAAAAAAAAAACA/9oACAECAQE/AXJ//8QARxAAAQMBAggHDAkDBQEAAAAAAQIDBAUAEQYSITFBUWFxEyIjMkBCUAcUFSAwM1JygaGxwRYXJENTYmNzkRCCwiWys9Lww//aAAgBAQAGPwLsMt1SX3xPKb2qbHN7h9b0BvtHoXCqQ3IkJRDpcO8ICr8hPpHafdZiGt0rLTKUFZ61wuv7Hcq1bqLMWMyL3H314qU2doPcwCmWuaurODjq/bT1d5y7rLmTZK3XXFYzjrq8ZSjrJNvrNr8W6RJQU0ttafNtaXN6sw2b+x109LnhCq3ZIEdfMP6iuruz278wlqZLSTyEJristbk/M5f6JZmNnwXBudqK/SGhver4X2RHjtJQhCQlCEjIkauxXK5hJVWokZrnOOq9w1nZZ2hdz0OU6Cb0rmq8+6Nn4Y99i44sqUo3qUTn/pHolJjF6TKeS2y2nSo2j4NxLlPXcJNkAeddOc7tA2DsVykUEt1WqpyFptfJMn86h/tHusavhVVlvq+6aGRtoakp0eJ9Ztfi/aJSMWltrTlba0ub1aNm/sRVZwpq7cZoc0KPHcOpKc6jZyjYJcJSaYchKF8u+PzKHNGwfzbL4iWpjKvBcEh2or9IaG96vhfZEaO0lDbaQlCEi4JA0dhYyjkFnaHgOG6nUU8VUi++Oyd4552DJtsqt4UVd2XIV1nDkSNSRmSNg8WPRKRGU9JlOhtlpPWUbR8G4dy3vOTZA+9eOc7tA2DsLwhhTVQ0VDkYyOM696qfnms5SoKjTKSTd3oyvjuj9RWndm8f6za9G+0SkFNMbWPNtaXN6tGzf2CqRJeS22gXrWtVwSNdnKH3NAibJzKqa/Mt+oOudubfZysV+pvS5Lp47z67z/7Z46W5jZ8FwSl2oL9IaG96vhfZMeO0lCEJCUISLgkDR2BwtfnY8pab2Kexldc9nVG02XEkSO8qZjcnTY6uL/eeufd5CPRKRGL0mU6G2W06VG0bByGEqeux5sgDzrxzndoGzp7lQqUtthhpOM666vFSkbTZyhdywX50rq7zf/Gk/E/xZ2pVSY5IkPLxnXnV4ylHafI/WbhBFukykYtLQscxo53N6tGzf09UebJEupYvJU2Ovj/3nqC2NXJ3Bw0qvYp0c3NI/wCx2nySW5jSvBcG52oOelqb3q+F9kx2GwhCEhKEJFwSNXTXKvXakzEjNC9x59eKBZyh9zELiMZl1RxPKr9QdQbc+6y5Ut9bjjisZbjiryo6yfJR6HSIxekyng2y2nSo2j4Nw8VbvPmyAPPOnOd2gbB01ymRVipVYZBCYXxWj+orq7s9u/8ACiplaUnkIrfFaZ9VPzz+U+s2vRvtEtvFpbavu2tLm9WjZv6YutYT1ZqHGR13TnOoDOTsFnaFgHwlMp5vSqVfdIeH+A3ZbFa1Ekm8k+USma0rwVAIdqC/S1N71fC+yI8dpKEISEoQkXBI1dLco2DOJVqoMig2vkWD+ZQznYPdY1jCqruSXPu0nIhsakpzJ8rHodIiqekynQ2y2nSTaPg3CCVO3Y82QB5545zu0DYOlGsYVVZEdv7tGdbp1JTps7RsHCulUpXFKEK5Z8fnVo3D3+X+syvRbpUtBTTEL+7ZOdzer4b+kla1AAC8k6LOUTuf8FU544q5Zyx2T/8AQ7slnK3hLVXZclzOt1WYagNA2Dy6UTmlClwbnag5dztTe9XwvslhhsIQgXJQkXADV0jv7CaqJS4U3sQ28rz25PzzWXTo7iqbSryBBYcyuD9RXW3ZugRqHSIxdkyng2y2NKjaPg1CxVugY8yQB55051btA2Do6pUt9DbbacZbjirgkaybO0HuYBMmQMi6q4m9pH7Y6+85N9nKvXKi7KkvG9x55d5PQXO6fUkBb76lMU4H7tAyLVvJybgdfSJGAUOUtqm0xQS60k3cO9deSrXdfcOh4PR0puvpjazvVxvn0h/ugU+It6m1EhT7iE397u3XHG1A5weh4PPoXfdTUNnenin4dIVHkMpWhabloWm8KGqzlc7mXBw5GddMcVc0v1D1DszbrOUeu012LJZNzjLyLiOgudy+prCHm1Kfpqj94k5Vo3jP/OrpXg/Cem4y0jkJbXFdZ9VXyzWcqTLZqNJB4s5hGVsfqJ6u/N0CPW6TJLMmK8l1lwaFC0bCSJioe83NYB808M43aRsPSi06gKSoXKSoZCLO13uecFTpp4y4JFzDu78M+6y6LhHSXoclvnNPJu9o1jb5dKp7p8Fz7mp6PQ1O70/C+yXmXAtC03pUk5COl+C8KqSl4DzLwyONHWlWizlXpeNVKSMvfDSOUZH6if8AIZN3l/q2r0q+XCRjU5xxXnGfQ3p+G7plxs7XcCS3TKkq9S2bvs753DmHaP4suh4T0l2JIR1XBkUNaTmUNo8rGr9GklmVEdDjLg0G0bCinEBSxiymfwXRzk/+0dNVRsKqS3JaPMURcts60qzpNnKzgxwlVpYyqUhHLMD8yRnH5h7vKiLU37qTUlJbm35mj1XfZp2WC0KBBF4IOfpzlZwX4OlVQ5VFCORfP5kjmn8w99lUXCmkrjOjmE5UODWlWZQ8p9XtdkXzqc1fCWtWV5jVvT8N3T10PCikty46+qvOk60nOk7RZ2uYFcJU6aL1KauvkMDcOeNo/i1xHkouEdFkcHJiPBxpXyOw5rRcKqVkS8m55m/K04Ocg9gOVekhNLqxy98NI5N4/qJ/yGXfbwVhVSVsE+aeGVt4a0q0+S8F1eTi0mpqCJN+ZlzqufI7N1sYHP2Aui4SUlmZGcztPJv9o1HaLO17ufF2owRxlwiL5DQ2fiD32LbiClSTcQRm8j9B67LvqNMb+zqWrK/H0e1Obdd2E5U47Yp1XIyTmUZHD+onrb89vB2FFNKEqPISm+M096qvln8hEwnoj2JIiO46NStaTsIyWiYVUdXJyW+O3flaX1kHcewnKPXac1KjPC5xl5F4NnK53M+Emxs66a4b3m/UPXGzPvsqPIaUhaDctCxcUnV4/wBH6zIupVVWlKyrMw9mSvdoPs1diKlvMiDU7uJUY7eU+uOv8dtjHwhp98ZSro89kEsu+3Qdh8f6I1uVfVKW2AkrOV9jMFbxmPs7EdpVYgNSYzycV1l5GMlQs5Xu5de63zl0l1fHT+2o87cctlxJsdbTrasVxtxNyknUR4sXCmiPYr8Vy+7QtOlJ2EWi4U0R3GYlN34t+VtWlB2g9i8JVY3e89KbmajHHHGxXpjYbf61D4WEpdzFRYytr3+idh8X6I1mTdTKq6AFKORh/MFbjmPs7Gcp9RiNvsOpxXWnkYyVDaDZ2v8ActNxyqXR3Vf8aj/tP82cp1UhOx32lYrrLyClSTtB8T6O1iRfVaU2lKyo5X2cyV79B9mvscorsHg5aU3MVFgXOt/9hsNi9Pj9904nkqlGQcTcodQ7/wCsTCqjr5SM5x278jqOsg7CLRMJ6I9jx5bWMnWk6UnaDk7HXFlsJcbcTiuNuJvChqIs5Xe5fix3+culOr5Nf7Z6u45N1naTWoDsaSyq51l5Fyk/0+hFdl3U6pufZ1LORiRo9is2+7snvPCSn8slPITmcjzW46thyWXO4Iz6VfxagwjmfuJ6nwteLeCqvIBq1MSESL87zfVd+R27+yVMvNpWhQuUlQvBFnK73Ny3AlnKunKyMun8v4Z926zFRmU56JLiOXSoj6SnhGjzk7QRp9tmpjCr0OthaDsIv7KROkQGVvNTW0tvLaBUkE5QDotGQ2kACOgADRxfG//EACoQAQABAwMDBAIDAQEBAAAAAAERACExQVFhQHGBIDBQkaGxEMHR4fDx/9oACAEBAAE/IfgsVZJ8vYqxy+A0uXUaSGoLM0ESUXe6sqNLvE+mfgodzUg7uvGWpL3MHPDJh/kKNo8gSzcF5re4ySWu8ncvw2Qo6pQJ4m4Hy4a1OSdkh/I97lU0NrBtrtt3DwFtUXQ4QSAGgHwo8Ow0ugZbQStQVCIj96ceZinHAkSnKur/ABku2c2DsbuhQ764g31PoPhJKJWb++bJ3d2hgHJ+ByP5dV9D2G+6h9ODutcHwZpub4LTeAeYpZjbGMPcX+6q6qfRA6QZCS27hHAVQYktCgBoBb4JOACVXFJTnfYMWv7GirEpTMeL4AHpKC2t0Qf9dCreMgLkPGgDQPZtt1M7029WwXe6Bq0gaAX2d+OO7PqKxqv2Utdxg7vwJh0yxmUtg5qE3EZK0Sk78Zfjg2Fj1ipwjtJbdwTgKonjixQA0A+AuTgqbZu+mNpxSY7tGRo2XuWaBUu/rz7Z+ZB2NV0KhKNfRDxsGgPenoVy7DBapYpg23BX/tb7aqZLJ0nqmfYL1dChchvDg7tcdbIa05lTCZaNw5m7oNMb6AbNT9s7RUz7IS8REAm27n0FUEuwQEANAOtiOHLwpcuwXavE+0h58m6peDFLuUXXn2hMW9dkHY3dConyWkiPGsGgdYsUTSUBsdHsTwM1fuUGFtucpW/uYbMBuuhpg6xW68N7tbwhag7xLjsmbbyGKSo5CVd/cFwgXYzbdwvsFtURB4YkADAHVIM0xAl/VZL/AHaX6dFXPGsds6z7oLn+u78Gq6AtFfIvgB/WNA6q7sB4V13+DVKakq8CJi9vdpL7164DuwNMB1OoNy0ANWobMsrwCR5Hc4p++ZT6sXAe+1KyLL7buF9gtqAhGNEQAMAdQmcpEZ+rlA3p/bQfZEP0cXNLPvjU13Mg7Gq6AtYVLPfxpg0Dp3UMEmZRYOanhiJbiXL/AJKSeuu89wcFjoSo9hmZPAunTg2JpgZNxAgsLBiy69FZKrZIKN1/np4kSkdzbggIaORaVO6R0OUUVafRnOX31FdXiillDZOKvbsu16y/Yql1dNzuTZLPQFNpnDI8gt3GjPUxOIkRW8GOUramo1eEAEq8uZikTPv5DEjtkee2pT9IMkIed9B1SuAyBGRNSnkS0gfb+A7TNarinRuYbQSPvyIdNMCbRuZ3Y2ocsJ4okRMidWtBr4fK/Zh1Go/Iqf2bg7m6kPvIqXbgPPPR6zQDIkI60zjuVyQvvBvqq5iLxBPII93QzBI77iSJqKVFKX24iXibjqh60oePYi30PM0ncf8AqPl/qURPcius26EO5jc3Yo+zpcB1OtQdKBv/AP3Dw2e5RDXMLg99DzHt4q9nBENu+yd5u6+5UoHsr+QVbt4+oLhZOTfVStgmT2mf6cCmQ1CUai0w97krN2DjcR169Bo8CFH7Iy9jdRGknxcVuzJqHtQMtvxHGH2J0UHGgkRz8BpmikOiZLSBKnwr4IXBxHFzTXgw5RkTR9gYvVuR93NZXzmd3f4FJpnEHiuBbsRzcVLiUej3g/KBt7ELl0cGNwhXDRzbhQltyLHJDr8FCr6bncOyXKlmS3Qa0SYy1iJZQ3Hj1ldlu/QKntyoMnwTehGO2p9rYO9mlFiMhl4j9U98+ozQ5v4pvLs+Zr8IzCYfkBp7Ncs3NA5uC4pmjk5eUXH0vqjLbq2/kD3qAyM0iW2sgfhIGnCY0hHgMeU2SmxPQ7szV/zlzUJ6NH3HJOys+Zo0M/CoD0ET0sErg9AXVnW/+OiuNO4Zrg/kVSVA/wDsEIR98vhiDmrQVxbInHdjaM1YnWg4ZXFY6L/KgQDYp/KBxZ0qGvk7sNgBRufDqQ6EfIUWR2o5blhG9Ln/AJHCky+bM5H96/xjJ2RkCvjJ7u9DJ8Q/JKCDezfuqQr+74GhcVzlo6VO9EwlGuxPw5l+lOj4lwwz6WRHJTk9Hm06m1WlI1IidwBJIDFc1ZoIPw+p/nT+dP4Pa06K4w6RcAkOoUV1x4ACx6v/2gAMAwEAAgADAAAAEAAAAAAAAAAAAAAAAAMAAAMAAAAAAAAAAAAAAAHMPIAAAAAAAAAAAAAAAABIAAMCAAAAAAAAAAAAAAAFAABMAAAEAAAAAAAAAAAAPIAAFIAAAAAAIAAAAAABFKAAAFKAAAAAAAAAAAAADAAAAAAKAAAAAAAAAAAABDIAAAAADIAAAAAAAAAAABKIAAAAABCAAAAAAAAAABDEAAAAAAACAAAAAAAAAAAOCAAAAAAABIAAAAAAAAAAAEMDAAAAAAEGAAAAAAAAAAAAAMJCAAAAAAKAAAAAAAAAAAAAAMBAAAAAJAAAAAAAAAAAAAAAMECAAAEIAAAAAAAAAAAAAAAEJCAAABAAAAAAAAAAAAAAAAEMCAAABCAAAAAAAAAAAAAAAAENBAECAAAAAAAAAAIAAAAAAAIHAFIAAAAAAAAAAAAAAAAAAEEDNCAAAAAAAAAAAAAAAAAAAAEAAAAIHIAPAAAAIAAAAAAAHHAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAID/2gAIAQMBAT8Qcn//xAAUEQEAAAAAAAAAAAAAAAAAAACA/9oACAECAQE/EHJ//8QAJhABAAICAQUBAQACAwEAAAAAAREhADFBECAwQFFhcYHwUKGxkf/aAAgBAQABPxDxJJHim47Iuek+BSy5LayVwco6takzyMnVnXVDMUqtAAU9L76pBtUk8ziT2JGPc5w1fa4wPG+C5ZoEogCuWz53eIS7YbeVAqVuERSgVNqVyDdCWkwwSBIigElCiO2D/X/gHccXVofIpBLAYC1BGDCVloKAlr2jfiAU7ZxbPSIaJaQGER1kgoKZMhVAABQB2c9DV+SfRvFDeTKiQh9PMVAeAZGgix9hUSC+1j98MTqk+lS0VVbXpojIckp4JlKBWAwpfgAHMu6Q3XIVe6D55uew7pJiehq+qHOMvSn/AFSD7hmJgf0adRVju5be5F4s9AVgMRkigJUiSQXbAElCAPzt56Sffchg/wAkp3h+KG0JcMjzlQZagbblC1iEhLKrKvYCoSUhP0yVztQSQII4gaoAAUAdBHntkdPkjtSSMSSMCCMi57o/9xRCYcA2q6P3PzyJWWSP1IHkHBGqTJKISBViwfb7Zh4GCQfgTKUCtGLHARkWmQbAf0FXpBuOwIIwiaMSW3sLBLik1DQNS0E0/AOB4vUkUqGRaYzCMwqsvaFYMYWwRydITAWpJCsxUHhg+etAaMHAHiKU4IFUgGS91V3oyhEwiQsRGs30REVQzRygAKAO4vJRb3lrwyJztASI26wgKoAAKAOsDs7oPhkHw9VQJXF83a7BsARgV2WGBpeGgtMU06p+pUpXeUnsphR+GxQK0YVSRYtKbkBX9JV7DV+GExPo73ZlqmQP648LWaCmFCT+RvpWWTgmslZVf9GiDwCUGOBReUiJJkLbAtUAEBXjg/19J2AZbiVaDnB3ClLmkq1BcWXZI+JLAsYpS+Fv9s/8c4EYvbgkv+zRYVAAAFAB5JPvoszkGsFsWxEpKBcmWCEGqNgBZPBkHjh3WWShVKqlXxLRhwiw/CZSgVocePmnRg3Qh/QVfEUR6MCcrktrCxSAvMxEDBI4qZQiAoQpeRa8YSxhmHjsxncCbYF1kII8sn3tZmo8OjLIeEMr4QfMn9PdcZLg3IsbmcIKAekypbVbVt8gw0yySY6JE5bYSBIZ4SpQAAKAD0mvBs2FYGFoxvTNtMiOyaS5F5NOGdCdkrxV2+R0QQ2CExotFIKHIa/1pS1BggrS7lfVkdPVQtyEZxqwkSn/AIcgLwNalA+T41tiyGxbbrygrmmuS0ATybL7CpXroDR0G6IMFKjQASrRk8oIhiGaheAKXE4euqkSKAieYAPmLO/LvEMmACvrxD6pzYhteR4UAAAKAD11Dbk1u56IA0b0/cSplhmKdpnFCYgTsMJt539/+UOSNEyKQUOGtQPyFpugVpdzPgmfLAaMExw76UIIJUgZPDhuVy0HgApIKOO/i3ZZjgNEQUAegEsY00H8NlBEZBoJsHpM8djFXBlvGqxJ18JoxZCLO/RYCKGXAsk1BSn+qM8+uChsTCLaaYm5oYJJohhNvRAlO2MKujrAUI0iEcesEGbwKjOk0GVCihEcRVszDKmTOt1gTivuOjlCDtiZQWKegoZyHsvA3T+0v/WCCTzHWH73oOzFiPDTM2G2z5HLFxAht2YIQjImxxpEfPO64pabG4SQqkRpy28N1KTdg3PIEPUhmZ/x0dVhq+h6/IFIUkQURpMbltVfrk05EtyuGlrYq9f2ERaXzqbzmtTdKHSdmoAKGZFRiAiUiPoQf6+JBIcRPkue4KebbRQCsNtrbIxFYCJ0M2Rn4eUURHDqb4YeJWZSjlgUsk++oMk945lAJA7E5PzFMHY6lZR4DWqyLjTqdWWg0pikL7NeXmnw2dDlF6QU4e381LCTMEO/po91oLkgJ8IQWwdAKIKjiCC/kk0RAuZ2E58i9GSwlEJibAfScjeHAESIUiIibnxpM/zrfz/vsn86v88HCMHJ51EM/QNyJVdeLgkfAYDJH1SaCExIY8QqkybC0OrwvcvlVPJhZPqRHhQd4YmVOQUGAMsIf0KZLmHGnKjCIrCSgEn6kQhCPJ4jKau0f1JSobnJgcCob+peuF16K4yfzyqSn/eHi9gj0DJENJKiAYhUysr87iFpNCKxE2eFX1YK61+hn/dOBmmDkDYibP3394GXJLDI5arHCcT2bNNK0wL4A3G4aDB51CFgkI2PgZwxoSTSJmKWxvVWMsEbH0NeebjiMDbBID4paMC0xE6DDMAgAk0gsWnyBvIfnfLi7DRRzTLyvMOHUE0sd2jP8BQ85r/PbJ98aT1TXw06JRsZlQliN4fNHbRKeICIcEoXjMt7posCRFAid2snf2rALbzB9Lm6SPyfMEYXc+mARik+g3aB/DlBaCsKFpMFnyLYjcAxrfa4DgeZIq4kNz3yqTyuPIavuLJ7yyfEzBB1jQ0fo7GERJwPwiIUJlv4RnLjCjcnYQBBNIg9o2htQyGNsLixYOBegn6EmmFzAlI+GD/XxQbDLnp/jqUeJJZlx2AcgEP/AOGYIK/ATPvAKnJlL97ImFmYphmCa6m8QBxv7EtqO/QzwZBpNfTwSf6e7vAhV8IVfEyJmtY4j9hCRwFZf5cKnYAn9L2TkRvpODLi3viC3cUS6L4Mvzt5nof31wYEnzCLOfcYRhOxgW1wo1VQBjZJnYtNfIfnRBhDT0Iu5R9QWMNmvw3hx/GUvEeWN/uFEeymz2NIRRlFCI5LIkZFWzlWmnoAYHul9fAtOwSBEUZ6GqTI5NqquHCCglkA+C+t898+qkkZIVxrUpeutBPgwjJSWeFpGxCcsltCyTFEI8I8YD5pcHAk8CY+6AuxJI6S/PFzPsglHe9A5EFEREyXfTWElvsHFa0G8AjKbnidGNoEUZ+8a/o/5DuSacOnL/OKy30lhfPRM7+Yb/8AuGOno6cNvZw/x2G3oY7M5znsNHY2X9xAIYFAmFbAPM4Xx0opAKAAANR1dnX/2Q=="
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1986,7 +2059,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_0__modules_router__["default"]();
 router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info).register('/singleplay', single).register('/game', choose).register('/scoreboard', scoreboard).register('/mode', typeGame).navigate();
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2023,7 +2096,7 @@ let RegistrationValidate = (login, email, password, password_confirm) => {
 /* harmony default export */ __webpack_exports__["a"] = (RegistrationValidate);
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2050,13 +2123,13 @@ let LoginValidate = (login, password) => {
 /* harmony default export */ __webpack_exports__["a"] = (LoginValidate);
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(25);
+var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2081,7 +2154,7 @@ if(false) {
 }
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2095,7 +2168,7 @@ exports.push([module.i, ".win {\n  position: absolute; }\n\n.overlay {\n  backgr
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 
@@ -2190,79 +2263,6 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 27 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
-
-
-
-/**
- * Сервис для работы с пользователями
- * @class UserService
- */
-class UserService {
-  constructor() {
-    /**
-     * Закомментить для обращения к серверу node.js
-     */
-    __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].BaseUrl = 'https://kvvartet2017.herokuapp.com';
-  }
-
-  /**
-   * Регистрирует нового пользователя
-   * @param {string} email
-   * @param {string} password
-   * @param {string} username
-   * @return {Promise}
-   */
-  signup(username, email, password) {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signup', { username, email, password });
-  }
-
-  /**
-   * Авторизация пользователя
-   * @param {string} username
-   * @param {string} password
-   * @return {Promise}
-   */
-  login(username, password) {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signin', { username, password });
-  }
-
-  /**
-   * Проверяет, авторизован ли пользователь
-   * @return {boolean}
-   */
-  isLoggedIn() {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/currentUser');
-  }
-
-  /**
-   * Выход пользователя
-   * @return {Promise}
-   */
-  logout(username, password) {
-    console.log('logout work');
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', { username, password });
-  }
-
-  /**
-   * Загружает scoreboard
-   * @return {Promise}
-   */
-
-  scores() {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Get('/scoreboard');
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (UserService);
-
-/***/ }),
 /* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2270,7 +2270,9 @@ class UserService {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__main_page_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__singleplay_DemoGameModule__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servises_user_service__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__singleplay_DemoGameModule__ = __webpack_require__(15);
+
 
 
 
@@ -2313,7 +2315,7 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
 
     creation() {
         if (document.querySelector('div.wrapper') === null) {
-            let game = new __WEBPACK_IMPORTED_MODULE_2__singleplay_DemoGameModule__["a" /* default */]();
+            let game = new __WEBPACK_IMPORTED_MODULE_3__singleplay_DemoGameModule__["a" /* default */]();
             game.stopGameLoop();
             document.body.innerHTML = `<div id="application"></div>`;
             const application = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.getElementById('application'));
@@ -2360,13 +2362,59 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
             allButtons[i].querySelector('li').setAttribute('value', valuePage[i]);
         }
         if (document.cookie) {
-            let username = document.cookie.substring(document.cookie.indexOf('=') + 1, document.cookie.length);
-            document.body.innerHTML += `<div style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}</p><a style="margin: 4px;">Logut</a></div>`;
+            let username = getCookie('username');
+            document.body.innerHTML += `<div style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+            </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
+            document.getElementById('logout').addEventListener('click', function () {
+                deleteCookie('username');
+                deleteCookie('email');
+                new __WEBPACK_IMPORTED_MODULE_2__servises_user_service__["a" /* default */]().logout(username, email);
+            });
         }
     }
 }
 /* unused harmony export MainPage */
 
+
+function setCookie(name, value, options) {
+    options = options || {};
+
+    var expires = options.expires;
+
+    if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+    }
+    if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+    }
+
+    value = encodeURIComponent(value);
+
+    var updatedCookie = name + "=" + value;
+
+    for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+            updatedCookie += "=" + propValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
+}
+
+function deleteCookie(name) {
+    setCookie(name, "", {
+        expires: -1
+    });
+}
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 /* harmony default export */ __webpack_exports__["a"] = (MainPage);
 
 /***/ }),
@@ -2492,7 +2540,7 @@ class InitiativeLine {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Skill__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Skill__ = __webpack_require__(16);
 
 class Unit {
     constructor() {
@@ -2992,7 +3040,7 @@ global.load = false;
 "use strict";
 /* unused harmony export WIDTH */
 /* unused harmony export HEIGHT */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile__ = __webpack_require__(17);
 
 
 
@@ -3090,7 +3138,7 @@ class DungeonMapMaker {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AnimationManager__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UnitManager__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Animation__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Action__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Action__ = __webpack_require__(18);
 
 
 
@@ -3440,7 +3488,7 @@ class AnimationManager {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Entity__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Action__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Action__ = __webpack_require__(18);
 
 
 
@@ -3870,8 +3918,8 @@ class Animation {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(5);
@@ -3963,7 +4011,7 @@ exports.push([module.i, ".menu form {\n  width: 350px; }\n\n.menu input {\n  fon
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(5);
@@ -4392,7 +4440,7 @@ exports.push([module.i, ".score {\n  color: #FAE7B5; }\n\ntable {\n  background-
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loading__ = __webpack_require__(56);
 
 
@@ -4671,7 +4719,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(20) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(20) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 52%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: #c58818;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 41px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.name {\n  top: 31%;\n  margin-left: 80%;\n  color: #000; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .single {\n    font-size: 1.5em;\n    left: 40%; }\n  .multi {\n    font-size: 1.5em;\n    top: 73%;\n    left: 40%; } }\n", ""]);
+exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(21) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(21) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 52%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: #c58818;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 41px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.name {\n  top: 31%;\n  margin-left: 80%;\n  color: #000; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .single {\n    font-size: 1.5em;\n    left: 40%; }\n  .multi {\n    font-size: 1.5em;\n    top: 73%;\n    left: 40%; } }\n", ""]);
 
 // exports
 
@@ -4865,8 +4913,8 @@ webpackContext.id = 71;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./http.js": 12,
-	"./mediator.js": 13,
+	"./http.js": 13,
+	"./mediator.js": 14,
 	"./router.js": 5
 };
 function webpackContext(req) {
