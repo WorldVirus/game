@@ -87,7 +87,9 @@ class Scoreboard extends Block {
                     if (x && x.style.display == 'none') {
                         break;
                     } else {
-                        lastDisplay = x;
+                        if (x) {
+                            lastDisplay = x;
+                        }
                     }
                 }
                 for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay.id + 6; i++) {
