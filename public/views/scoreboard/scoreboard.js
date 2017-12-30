@@ -142,8 +142,8 @@ class Scoreboard extends Block {
                                     let el = document.createElement('td');
                                     if (i > 5) {
                                         el.style.display = 'none';
-                                        el.id = i;
                                     }
+                                    el.id = i;
                                     array[i].appendChild(el);
                                     if (j === 1) {
                                         array[i].childNodes[j].innerHTML = `${data[i - 1].gold}`;
