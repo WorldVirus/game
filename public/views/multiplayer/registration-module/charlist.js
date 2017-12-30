@@ -119,13 +119,7 @@ export default class Choose extends Block{
         const a = document.querySelector('div.choose').appendChild(document.createElement('a'))//= `<a class ="enter" value = "/mode">ENTER</a>`;
         a.setAttribute('class','back');
         a.setAttribute('value','/');
-        a.innerHTML = 'LOGOUT'
-        a.addEventListener('click', function() {
-            console.log('logout');
-            deleteCookie('username');
-            deleteCookie('password');
-            new UserService().logout(getCookie('username'), getCookie('password'));
-        });
+        a.innerHTML = 'MENU';
         const enter=document.querySelector('div.choose').appendChild(document.createElement('a'));
         enter.setAttribute('class','enter');
         enter.setAttribute('value','/mode');

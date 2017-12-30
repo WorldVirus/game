@@ -102,7 +102,7 @@ export class MainPage extends Block {
             </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
             document.getElementById('logout').addEventListener('click', function() {
                 deleteCookie('username');
-                deleteCookie('email');
+                deleteCookie('password');
                 document.getElementById('user-menu').remove();
                 new UserService().logout(username, email);
             });
