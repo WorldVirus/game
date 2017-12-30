@@ -37,7 +37,9 @@ class Login extends Block {
 
     creation() {
 
-        console.log(document.cookie);
+        if (document.cookie) {
+            new Router().go('/game');
+        }
 
         const wrappe = document.querySelector('div.menu');
         if (wrappe.childNodes[0] !== undefined) {
