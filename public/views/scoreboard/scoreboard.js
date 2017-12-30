@@ -23,7 +23,8 @@ class Scoreboard extends Block {
             document.querySelector('div.menu').remove();
         }
          if (document.querySelector('img.arrow')!==null){
-            document.querySelector('img.arrow').remove();
+             let test = document.getElementsByClassName('arrow');
+             for (let i=2;i<4;++i){test[i].remove()}
         }
         //wrape.appendChild(this._element);
        const score =  wrape.appendChild(document.createElement('div'));
@@ -137,7 +138,7 @@ class Scoreboard extends Block {
        // const table = new Block(document.querySelector('table.table'));
 const newT = document.querySelector('table.table');
 
-        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
+        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard' + this.page;
         if (typeof window.fetch !== 'undefined') {
 
             fetch(url, {
