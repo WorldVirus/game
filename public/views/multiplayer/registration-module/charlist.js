@@ -121,6 +121,7 @@ export default class Choose extends Block{
         a.setAttribute('value','/');
         a.innerHTML = 'LOGOUT'
         a.addEventListener('click', function() {
+            console.log('logout');
             deleteCookie('username');
             deleteCookie('password');
             new UserService().logout(getCookie('username'), getCookie('password'));
