@@ -55,7 +55,7 @@ class Scoreboard extends Block {
                     }
                 }
                 for (let i = +lastDisplay.id - 1; i > +lastDisplay.id - 6 && i > 0; i--) {
-                    document.getElementById(i).style.display = 'table-cell';
+                    document.getElementById(i).style.display = '';
                 }
                 for (let i = +lastDisplay.id; i < +lastDisplay.id + 5; i++) {
                     let x = document.getElementById(i);
@@ -89,7 +89,7 @@ class Scoreboard extends Block {
                     }
                 }
                 for (let i = +lastDisplay.id + 1; document.getElementById(i) && i < +lastDisplay.id + 6; i++) {
-                    document.getElementById(i).style.display = 'table-cell';
+                    document.getElementById(i).style.display = '';
                 }
                 for (let i = +lastDisplay.id; i > 0 && document.getElementById(i).style.display !== 'none'; i--) {
                     let x = document.getElementById(i);
