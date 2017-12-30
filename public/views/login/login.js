@@ -38,6 +38,11 @@ class Login extends Block {
     creation() {
 
         if (document.cookie) {
+            wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])))
+            let logout = document.querySelector('a.back');
+            logout.addEventListener('click', function () {
+                userService.logout(formdata[0],formdata[1]);
+            });
             new Router().go('/game');
         }
 

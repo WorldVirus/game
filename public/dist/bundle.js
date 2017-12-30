@@ -1064,7 +1064,8 @@ function signin(login) {
         userService.login(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
             wrapper.appendChildBlock('name', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['user']).setText(setter(formdata[0])));
             let logout = document.querySelector('a.back');
-            document.cookie = formdata[0] + '=' + formdata[1];
+            document.cookie = 'username' + '=' + formdata[0];
+            document.cookie = 'email' + '=' + formdata[1];
             logout.addEventListener('click', function () {
                 userService.logout(formdata[0], formdata[1]);
             });
@@ -1081,7 +1082,8 @@ function signup(registration) {
         userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
             wrapper.appendChildBlock('name', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['user']).setText(setter(formdata[0])));
             let logout = document.querySelector('a.back');
-            document.cookie = formdata[0] + '=' + formdata[1];
+            document.cookie = 'username' + '=' + formdata[0];
+            document.cookie = 'email' + '=' + formdata[1];
             logout.addEventListener('click', function () {
                 userService.logout(formdata[0], formdata[1]);
             });
@@ -3903,7 +3905,14 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
 
     creation() {
 
-        console.log(document.cookie);
+        if (document.cookie) {
+            wrapper.appendChildBlock('name', new __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* default */]('div', ['user']).setText(setter(formdata[0])));
+            let logout = document.querySelector('a.back');
+            logout.addEventListener('click', function () {
+                userService.logout(formdata[0], formdata[1]);
+            });
+            new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game');
+        }
 
         const wrappe = document.querySelector('div.menu');
         if (wrappe.childNodes[0] !== undefined) {
@@ -4154,9 +4163,11 @@ const rowValues = [`Username`, `Frags`, `Gold`];
 class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
         super('div', ['score'], {});
+        this.page = 1;
     }
 
     creation() {
+        window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
         if (document.querySelector('div.menu') !== undefined) {
@@ -4180,6 +4191,10 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
         this.appendChildBlock('table', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('table', ['table']));
 
         let fun1 = function () {
+            if (this.page > 1) {
+                ths.page -= 1;
+                window.history.pushState({}, '', '/scoreboard/' + this.page);
+            }
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {
@@ -4215,6 +4230,15 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
         };
 
         let fun2 = function () {
+            let max = 1;
+            while (document.getElementById(max)) {
+                max += 1;
+            }
+            max -= 1;
+            if (this.page + 1 < Math.ceil(max / 5)) {
+                window.history.pushState({}, '', '/scoreboard/' + this.page);
+                this.page += 1;
+            }
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {
@@ -4574,7 +4598,7 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         const a = document.querySelector('div.choose').appendChild(document.createElement('a')); //= `<a class ="enter" value = "/mode">ENTER</a>`;
         a.setAttribute('class', 'back');
         a.setAttribute('value', '/');
-        a.innerHTML = 'BACK';
+        a.innerHTML = 'LOGOUT';
         const enter = document.querySelector('div.choose').appendChild(document.createElement('a'));
         enter.setAttribute('class', 'enter');
         enter.setAttribute('value', '/mode');

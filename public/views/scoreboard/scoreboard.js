@@ -12,9 +12,11 @@ const rowValues = [`Username`,`Frags`,`Gold`]
 class Scoreboard extends Block {
     constructor() {
         super('div', ['score'], {});
+        this.page = 1;
     }
 
     creation() {
+        window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
         if (document.querySelector('div.menu') !== undefined) {
@@ -38,6 +40,10 @@ class Scoreboard extends Block {
         this.appendChildBlock('table', new Block('table', ['table']));
 
         let fun1 = function() {
+            if (this.page > 1) {
+                ths.page -= 1;
+                window.history.pushState({}, '', '/scoreboard/' + this.page);
+            }
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {
@@ -73,6 +79,15 @@ class Scoreboard extends Block {
         };
 
         let fun2 = function() {
+            let max = 1;
+            while(document.getElementById(max)) {
+                max += 1;
+            }
+            max -= 1;
+            if (this.page + 1 < Math.ceil(max/5)) {
+                window.history.pushState({}, '', '/scoreboard/' + this.page);
+                this.page += 1;
+            }
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {

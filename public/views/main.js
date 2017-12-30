@@ -56,8 +56,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
          userService.signup(formdata[0], formdata[1], formdata[2])
              .then(() => new Router().go('/game'))
               .then(() => {
-                  wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])
-              ))
+                  wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
                   let logout = document.querySelector('a.back');
                   document.cookie = 'username' + '=' + formdata[0];
                   document.cookie = 'email' + '=' + formdata[1];

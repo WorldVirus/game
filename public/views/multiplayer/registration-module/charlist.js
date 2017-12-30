@@ -118,7 +118,7 @@ export default class Choose extends Block{
         const a = document.querySelector('div.choose').appendChild(document.createElement('a'))//= `<a class ="enter" value = "/mode">ENTER</a>`;
         a.setAttribute('class','back');
         a.setAttribute('value','/');
-        a.innerHTML = 'BACK'
+        a.innerHTML = 'LOGOUT'
         const enter=document.querySelector('div.choose').appendChild(document.createElement('a'));
         enter.setAttribute('class','enter');
         enter.setAttribute('value','/mode');
