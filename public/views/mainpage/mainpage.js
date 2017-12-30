@@ -35,7 +35,7 @@ export const buttons = [
 ];
 
 const blockClass = 'button';
-const valuePage = [`/login`,`/singleplay`,'/signup',`/info`,`/scoreboard`];
+const valuePage = [`/login`,`/singleplay`,'/signup',`/info`,`/scoreboard/1`];
 const text = [`New Game`,`Singleplayer`,`Registration`,`Authors`,`Scoreboard`];
 export class MainPage extends Block {
     constructor() {
