@@ -141,13 +141,12 @@ class Scoreboard extends Block {
                         for (let k = 0; k < Math.ceil(data.length/5); k++) {
                             for (let i = 1 + k*5; i <= data.length && i <= (k + 1)*5; ++i) {
                                 array[i].id = i;
+                                if (i > 5) {
+                                    el.style.display = 'none';
+                                }
+                                array[i].appendChild(el);
                                 for (let j = 0; j < 3; ++j) {
                                     let el = document.createElement('td');
-                                    if (i > 5) {
-                                        el.style.display = 'none';
-                                        el.hidden = true;
-                                    }
-                                    array[i].appendChild(el);
                                     if (j === 1) {
                                         array[i].childNodes[j].innerHTML = `${data[i - 1].gold}`;
                                         continue;
