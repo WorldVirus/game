@@ -19,7 +19,7 @@ class Scoreboard extends Block {
         window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
-        if (document.querySelector('div.menu') !== undefined) {
+        if (document.querySelector('div.menu')) {
             document.querySelector('div.menu').remove();
         }
         wrape.appendChild(this._element);
