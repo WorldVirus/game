@@ -145,6 +145,7 @@ class Scoreboard extends Block {
                                     let el = document.createElement('td');
                                     if (i > 5) {
                                         el.style.display = 'none';
+                                        el.hidden = true;
                                     }
                                     array[i].appendChild(el);
                                     if (j === 1) {
