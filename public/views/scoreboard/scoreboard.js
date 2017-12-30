@@ -25,7 +25,9 @@ class Scoreboard extends Block {
          if (document.querySelector('img.arrow')!==null){
             document.querySelector('img.arrow').remove();
         }
-        wrape.appendChild(this._element);
+        //wrape.appendChild(this._element);
+       const score =  wrape.appendChild(document.createElement('div'));
+        score.setAttribute('class','score');
         const arrows = document.createElement('div');
         arrows.style.width = '25%';
         arrows.style.margin = 'auto';
@@ -40,8 +42,10 @@ class Scoreboard extends Block {
         arrows.appendChild(img1);
         arrows.appendChild(img2);
         wrape.appendChild(arrows);
-        this.appendChildBlock('table', new Block('table', ['table']));
+      //  this.appendChildBlock('table', new Block('table', ['table']));
 
+        const tabl = document.querySelector('div.score').appendChild('table');
+        tabl.setAttribute('class','table');
         let fun1 = function() {
             if (this.page > 1) {
                 this.page -= 1;
@@ -130,8 +134,8 @@ class Scoreboard extends Block {
         img1.onclick = fun2.bind(this);
         img2.onclick = fun1.bind(this);
 
-        const table = new Block(document.querySelector('table.table'));
-
+       // const table = new Block(document.querySelector('table.table'));
+const newT = document.querySelector('table.table');
 
         const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
         if (typeof window.fetch !== 'undefined') {
@@ -154,7 +158,9 @@ class Scoreboard extends Block {
                     json.then(function (data) {
                         console.log(data);
                         for (let i = 0; i < data.length +1; ++i) {
-                            table.appendChildBlock('data', new Block('tr', ['data']))
+                           // table.appendChildBlock('data', new Block('tr', ['data']))
+                            let n = newT.appendChild(document.createElement('tr'));
+                            n.ssetAttribute('tr','data');
                         }
                         const array = document.getElementsByTagName('tr');
                         let value = array[0];
