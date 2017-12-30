@@ -38,8 +38,10 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                 wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])))
                 let logout = document.querySelector('a.back');
                 document.cookie = 'username' + '=' + formdata[0];
-                document.cookie = 'email' + '=' + formdata[1];
+                document.cookie = 'password' + '=' + formdata[1];
                 logout.addEventListener('click', function () {
+                    deleteCookie('username');
+                    deleteCookie('password');
                     userService.logout(formdata[0],formdata[1]);
                 })
             })
@@ -59,8 +61,10 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                   wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
                   let logout = document.querySelector('a.back');
                   document.cookie = 'username' + '=' + formdata[0];
-                  document.cookie = 'email' + '=' + formdata[1];
+                  document.cookie = 'password' + '=' + formdata[1];
                   logout.addEventListener('click', function () {
+                      deleteCookie('username');
+                      deleteCookie('password');
                       userService.logout(formdata[0],formdata[1]);
                   })
              })
@@ -96,6 +100,49 @@ function setter(input) {
     console.log(input);
     return String(input);
 }
+
+function setCookie(name, value, options) {
+    options = options || {};
+
+    var expires = options.expires;
+
+    if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+    }
+    if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+    }
+
+    value = encodeURIComponent(value);
+
+    var updatedCookie = name + "=" + value;
+
+    for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+            updatedCookie += "=" + propValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
+}
+
+function deleteCookie(name) {
+    setCookie(name, "", {
+        expires: -1
+    })
+}
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 export {signup,signin,setter };
 
 
