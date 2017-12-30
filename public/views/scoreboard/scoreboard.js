@@ -124,8 +124,8 @@ class Scoreboard extends Block {
             }
         };
 
-        img1.onclick = fun2;
-        img2.onclick = fun1;
+        img1.onclick = fun2.bind(this);
+        img2.onclick = fun1.bind(this);
 
         const table = new Block(document.querySelector('table.table'));
 
