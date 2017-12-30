@@ -12,10 +12,10 @@ const rowValues = [`Username`,`Frags`,`Gold`]
 class Scoreboard extends Block {
     constructor() {
         super('div', ['score'], {});
-        this.page = 1;
     }
 
     creation() {
+        this.page = 1;
         window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
@@ -41,7 +41,7 @@ class Scoreboard extends Block {
 
         let fun1 = function() {
             if (this.page > 1) {
-                ths.page -= 1;
+                this.page -= 1;
                 window.history.pushState({}, '', '/scoreboard/' + this.page);
             }
             let arr = document.getElementsByTagName('tr');
@@ -84,7 +84,8 @@ class Scoreboard extends Block {
                 max += 1;
             }
             max -= 1;
-            if (this.page + 1 < Math.ceil(max/5)) {
+            console.log(max);
+            if (this.page + 1 <= Math.ceil(max/5)) {
                 window.history.pushState({}, '', '/scoreboard/' + this.page);
                 this.page += 1;
             }
