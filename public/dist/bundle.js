@@ -4179,7 +4179,7 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {
-                if (arr[i].style.display !== 'none') {
+                if (arr[i].style.display !== 'none' && arr[i].id) {
                     lastDisplay = arr[i];
                     break;
                 }
@@ -4210,15 +4210,17 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
             for (let i = 0; i < arr.length; i++) {
-                if (arr[i].style.display !== 'none') {
+                if (arr[i].style.display !== 'none' && arr[i].id) {
                     lastDisplay = arr[i];
                     break;
                 }
             }
             if (lastDisplay) {
                 while (true) {
-                    let x = document.getElementById(lastDisplay.id + 1);
-                    if (x && x.style.display === 'none') {
+                    let x = document.getElementById(+lastDisplay.id + 1);
+                    console.log(x);
+                    console.log(x.style.display);
+                    if (x && x.style.display == 'none') {
                         break;
                     } else {
                         lastDisplay = x;
@@ -4274,11 +4276,11 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
                     for (let k = 0; k < Math.ceil(data.length / 5); k++) {
                         for (let i = 1 + k * 5; i <= data.length && i <= (k + 1) * 5; ++i) {
+                            array[i].id = i;
                             for (let j = 0; j < 3; ++j) {
                                 let el = document.createElement('td');
                                 if (i > 5) {
                                     el.style.display = 'none';
-                                    el.id = i;
                                 }
                                 array[i].appendChild(el);
                                 if (j === 1) {

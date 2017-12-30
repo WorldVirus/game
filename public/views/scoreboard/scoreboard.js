@@ -80,7 +80,9 @@ class Scoreboard extends Block {
             if (lastDisplay) {
                 while(true) {
                     let x = document.getElementById(+lastDisplay.id + 1);
-                    if (x && x.style.display === 'none') {
+                    console.log(x);
+                    console.log(x.style.display);
+                    if (x && x.style.display == 'none') {
                         break;
                     } else {
                         lastDisplay = x;
