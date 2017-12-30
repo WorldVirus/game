@@ -1,6 +1,6 @@
 import Block from '../baseview';
 import './info.scss';
-import '../../servises/user-service'
+import '../../servises/user-service';
 
 const buttonBack = "buttonBack";
 const authors = [
