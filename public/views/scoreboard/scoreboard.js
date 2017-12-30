@@ -86,8 +86,8 @@ class Scoreboard extends Block {
             max -= 1;
             console.log(max);
             if (this.page + 1 <= Math.ceil(max/5)) {
-                window.history.pushState({}, '', '/scoreboard/' + this.page);
                 this.page += 1;
+                window.history.pushState({}, '', '/scoreboard/' + this.page);
             }
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
