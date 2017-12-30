@@ -45,7 +45,7 @@ export class MainPage extends Block {
         if (document.querySelector('div.wrapper') === null) {
             let game = new DemoGameModule();
              game.stopGameLoop();
-            document.body.innerHTML = `<div id="application"></div>`
+            document.body.innerHTML = `<div id="application"></div>`;
             const application = new Block(document.getElementById('application'));
 
             const wrapper = new Block('div', ['wrapper']);
@@ -92,7 +92,10 @@ export class MainPage extends Block {
         for (let i = 0; i<5; ++i) {
             allButtons[i].innerHTML = `<li>${text[i]}</li>`
             allButtons[i].querySelector('li').setAttribute('value',valuePage[i])
-
+        }
+        if (document.cookie) {
+            let username = document.cookie.substring(0, document.cookie.indexOf('='));
+            document.body.innerHTML += `<div style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}</p><a style="margin: 4px;">Logut</a></div>`;
         }
     }
  }

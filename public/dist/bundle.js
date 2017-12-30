@@ -2359,6 +2359,10 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
             allButtons[i].innerHTML = `<li>${text[i]}</li>`;
             allButtons[i].querySelector('li').setAttribute('value', valuePage[i]);
         }
+        if (document.cookie) {
+            let username = document.cookie.substring(0, document.cookie.indexOf('='));
+            document.body.innerHTML += `<div style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}</p><a style="margin: 4px;">Logut</a></div>`;
+        }
     }
 }
 /* unused harmony export MainPage */
@@ -4163,10 +4167,10 @@ const rowValues = [`Username`, `Frags`, `Gold`];
 class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
         super('div', ['score'], {});
-        this.page = 1;
     }
 
     creation() {
+        this.page = 1;
         window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
@@ -4192,7 +4196,7 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
         let fun1 = function () {
             if (this.page > 1) {
-                ths.page -= 1;
+                this.page -= 1;
                 window.history.pushState({}, '', '/scoreboard/' + this.page);
             }
             let arr = document.getElementsByTagName('tr');
@@ -4235,9 +4239,10 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
                 max += 1;
             }
             max -= 1;
-            if (this.page + 1 < Math.ceil(max / 5)) {
-                window.history.pushState({}, '', '/scoreboard/' + this.page);
+            console.log(max);
+            if (this.page + 1 <= Math.ceil(max / 5)) {
                 this.page += 1;
+                window.history.pushState({}, '', '/scoreboard/' + this.page);
             }
             let arr = document.getElementsByTagName('tr');
             let lastDisplay;
@@ -4274,8 +4279,8 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
             }
         };
 
-        img1.onclick = fun2;
-        img2.onclick = fun1;
+        img1.onclick = fun2.bind(this);
+        img2.onclick = fun1.bind(this);
 
         const table = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.querySelector('table.table'));
 
