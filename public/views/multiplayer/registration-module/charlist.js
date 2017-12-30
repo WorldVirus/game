@@ -2,6 +2,7 @@
 import Block from '../../baseview'
 import './module.scss'
 import Custom from '../../custom-module/custom-module'
+import UserService from '../servises/user-service';
 
 //import {setter} from '../../main'
 const enity = [
