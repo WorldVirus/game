@@ -35,15 +35,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
         userService.login(formdata[0], formdata[1])
             .then(() => new Router().go('/game'))
             .then(() => {
-                wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])))
-                let logout = document.querySelector('a.back');
-                document.cookie = 'username' + '=' + formdata[0];
-                document.cookie = 'password' + '=' + formdata[1];
-                logout.addEventListener('click', function () {
-                    deleteCookie('username');
-                    deleteCookie('password');
-                    userService.logout(formdata[0],formdata[1]);
-                })
+                wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
     });
@@ -59,14 +51,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              .then(() => new Router().go('/game'))
               .then(() => {
                   wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
-                  let logout = document.querySelector('a.back');
-                  document.cookie = 'username' + '=' + formdata[0];
-                  document.cookie = 'password' + '=' + formdata[1];
-                  logout.addEventListener('click', function () {
-                      deleteCookie('username');
-                      deleteCookie('password');
-                      userService.logout(formdata[0],formdata[1]);
-                  })
              })
      });
  }
