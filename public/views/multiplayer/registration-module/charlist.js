@@ -146,6 +146,18 @@ export default class Choose extends Block{
         let value = document.querySelector('img.person')
         value.setAttribute('src',enity[0].src);
 
+        if (document.cookie) {
+            let username = getCookie('username');
+            let email = getCookie('email');
+            document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+            </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
+            document.getElementById('logout').addEventListener('click', function() {
+                deleteCookie('username');
+                deleteCookie('password');
+                document.getElementById('user-menu').remove();
+                new UserService().logout(username, email);
+            });
+        }
     }
 }
 
