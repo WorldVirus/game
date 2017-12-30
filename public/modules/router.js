@@ -61,11 +61,11 @@ export default  class Router {
 
 
         view.creation();
-    if (path === '/login') {
-        signin(view);
-     }
-     else if (path === '/signup') {
-        signup(view)
-      }
+        if (path === '/login') {
+            signin(view);
+        }
+        else if (path === '/signup') {
+            signup(view)
+        }
     }
 }
