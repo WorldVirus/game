@@ -37,7 +37,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             .then(() => {
                 wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])))
                 let logout = document.querySelector('a.back');
-                document.cookie = formdata[0] + '=' formdata[1];
+                document.cookie = formdata[0] + '=' + formdata[1];
                 logout.addEventListener('click', function () {
                     userService.logout(formdata[0],formdata[1]);
                 })
@@ -58,7 +58,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                   wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])
               ))
                   let logout = document.querySelector('a.back');
-                  document.cookie = formdata[0] + '=' formdata[1];
+                  document.cookie = formdata[0] + '=' + formdata[1];
                   logout.addEventListener('click', function () {
                       userService.logout(formdata[0],formdata[1]);
                   })
