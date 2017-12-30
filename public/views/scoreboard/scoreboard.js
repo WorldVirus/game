@@ -90,7 +90,7 @@ class Scoreboard extends Block {
                         if (x) {
                             lastDisplay = x;
                         } else {
-                            break;
+                            return;
                         }
                     }
                 }
