@@ -22,6 +22,9 @@ class Scoreboard extends Block {
         if (document.querySelector('div.menu')) {
             document.querySelector('div.menu').remove();
         }
+         if (document.querySelector('img.arrow')!==null){
+            document.querySelector('img.arrow').remove();
+        }
         wrape.appendChild(this._element);
         const arrows = document.createElement('div');
         arrows.style.width = '25%';
