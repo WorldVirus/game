@@ -102,18 +102,18 @@ export class MainPage extends Block {
         }).then(response => {
                 if (response.status === 200) {
                     return response.text();
-                } else {
-                    throw new Error('It\'s error');
                 }
             }).then(data => {
-                let username = data.substring(data.indexOf('login is') + 9, data.length);
-                document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+                if (data) {
+                    let username = data.substring(data.indexOf('login is') + 9, data.length);
+                    document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
                             </p><a id="logout" style="margin: 4px;">Logout</a></div>`;
-                document.getElementById('logout').addEventListener('click', function() {
-                    document.getElementById('user-menu').remove();
-                    new UserService().logout();
-                });
-        }).catch(() => console.log('Don\'t login'));
+                    document.getElementById('logout').addEventListener('click', function () {
+                        document.getElementById('user-menu').remove();
+                        new UserService().logout();
+                    });
+                }
+        });
     }
  }
 
