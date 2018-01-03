@@ -37,8 +37,8 @@ class Login extends Block {
 
     creation() {
 
-        if (document.cookie) {
-            new Router().go('/game');
+        if (document.getElementById('user-menu')) {
+            window.history.pushState({}, '', '/game');
             return;
         }
 
