@@ -943,7 +943,7 @@ class UserService {
    */
   logout(username, password) {
     console.log('logout work');
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', { username, password });
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', {});
   }
 
   /**
@@ -2092,7 +2092,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_0__modules_router__["default"]();
 for (let i = 0; i < 100; ++i) {
     router.register(`/scoreboard/${i}`, scoreboard);
 }
-router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info).register('/singleplay', single).register('/game', choose).register('/scoreboard', scoreboard).register('/mode', typeGame).navigate();
+router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info).register('/singleplay', single).register('/game', choose).register('/scoreboard/1', scoreboard).register('/scoreboard/2', scoreboard).register('/scoreboard/3', scoreboard).register('/mode', typeGame).navigate();
 
 /***/ }),
 /* 23 */
@@ -2342,7 +2342,7 @@ const buttons = [{
 
 
 const blockClass = 'button';
-const valuePage = [`/login`, `/singleplay`, '/signup', `/info`, `/scoreboard`];
+const valuePage = [`/login`, `/singleplay`, '/signup', `/info`, `/scoreboard/1`];
 const text = [`New Game`, `Singleplayer`, `Registration`, `Authors`, `Scoreboard`];
 class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
@@ -4323,13 +4323,21 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
     creation() {
         this.page = 1;
-        window.history.pushState({}, '', '/scoreboard/1');
+        // window.history.pushState({}, '', '/scoreboard/1');
         const wrape = document.querySelector('div.wrapper');
 
         if (document.querySelector('div.menu')) {
             document.querySelector('div.menu').remove();
         }
-        wrape.appendChild(this._element);
+        if (document.querySelector('img.arrow') !== null) {
+            let test = document.getElementsByClassName('arrow');
+            for (let i = 2; i < 4; ++i) {
+                test[i].remove();
+            }
+        }
+        //wrape.appendChild(this._element);
+        const score = wrape.appendChild(document.createElement('div'));
+        score.setAttribute('class', 'score');
         const arrows = document.createElement('div');
         arrows.style.width = '25%';
         arrows.style.margin = 'auto';
@@ -4344,8 +4352,10 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
         arrows.appendChild(img1);
         arrows.appendChild(img2);
         wrape.appendChild(arrows);
-        this.appendChildBlock('table', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('table', ['table']));
+        //  this.appendChildBlock('table', new Block('table', ['table']));
 
+        const tabl = document.querySelector('div.score').appendChild(document.createElement('table'));
+        tabl.setAttribute('class', 'table');
         let fun1 = function () {
             if (this.page > 1) {
                 this.page -= 1;
@@ -4434,7 +4444,8 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
         img1.onclick = fun2.bind(this);
         img2.onclick = fun1.bind(this);
 
-        const table = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.querySelector('table.table'));
+        // const table = new Block(document.querySelector('table.table'));
+        const newT = document.querySelector('table.table');
 
         const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
         if (typeof window.fetch !== 'undefined') {
@@ -4456,7 +4467,9 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
                 json.then(function (data) {
                     console.log(data);
                     for (let i = 0; i < data.length + 1; ++i) {
-                        table.appendChildBlock('data', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('tr', ['data']));
+                        // table.appendChildBlock('data', new Block('tr', ['data']))
+                        let n = newT.appendChild(document.createElement('tr'));
+                        n.setAttribute('class', 'data');
                     }
                     const array = document.getElementsByTagName('tr');
                     let value = array[0];
