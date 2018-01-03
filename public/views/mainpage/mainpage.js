@@ -113,7 +113,7 @@ export class MainPage extends Block {
                     document.getElementById('user-menu').remove();
                     new UserService().logout();
                 });
-        });
+        }).catch(() => console.log('Don\'t login'));
     }
  }
 
