@@ -103,7 +103,7 @@ export class MainPage extends Block {
                 if (response.status === 200) {
                     return response.text();
                 } else {
-                    throw 'error';
+                    throw new Error('It\'s error');
                 }
             }).then(data => {
                 let username = data.substring(data.indexOf('login is') + 9, data.length);
