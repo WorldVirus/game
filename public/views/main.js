@@ -7,7 +7,9 @@ import Router from "../modules/router";
 import Custom from "../views/custom-module/custom-module";
 
 import UserService from '../servises/user-service';
-import Mediator from '../modules/mediator'
+import Mediator from '../modules/mediator';
+import Validate from '../blocks/forms/validation';
+
 const userService = new UserService();
 
 const application = new Block(document.getElementById('application'));

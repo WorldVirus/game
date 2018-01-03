@@ -1,5 +1,3 @@
-import Validate from '../blocks/forms/validation';
-
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
