@@ -142,19 +142,15 @@ class Http {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Accept' : 'application/json'
             }
-        })
-            .then(function (response) {
-                console.log("fetch post work\n");
-                console.log(response.status);
-                if ( response.status === 200 ) {
+        }).then(function (response) {
+                if (response.status === 200 ) {
                     return;
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    let json = response.json();
-                    return json.then(response => {throw response;});
+                    throw response.text();
                 }
-            })
+            });
     }
 
     static _FetchDelete(body, url) {

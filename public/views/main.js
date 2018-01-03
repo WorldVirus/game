@@ -27,19 +27,19 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
  function signin(login) {
     login.onSubmit((formdata) => {
         const authValidation = LoginValidate(formdata[0], formdata[1]);
-        console.log(formdata[0], formdata[1]);
         if (authValidation === false) {
             return;
         }
-
         userService.login(formdata[0], formdata[1])
             .then(() => window.history.pushState({}, '', '/game'))
             .then(() => {
                 wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
-                document.cookie = 'username' + '=' + formdata[0];
-                document.cookie = 'password' + '=' + formdata[1];
+
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
+            .catch(error => {
+                console.log("Signin error: " + error);
+            });
     });
 }
 
