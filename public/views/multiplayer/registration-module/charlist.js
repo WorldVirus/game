@@ -25,7 +25,7 @@ const name = [`warrior`,`priest`,`mage`,`thief`];
 let index = 0;
 let i = 0;
 const wrape = document.querySelector('div.wrapper');
-export default class Choose extends Block{
+export default class Choose extends Block {
     constructor() {
         super('div', ['choose'], {});
         this.createChildren();
