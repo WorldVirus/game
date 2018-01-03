@@ -1,5 +1,5 @@
 import {signin ,signup }from  '../views/main'
-import Custom from '../views/custom-module/custom-module'
+import UserService from '../servises/user-service';
 export default  class Router {
 
     constructor() {
