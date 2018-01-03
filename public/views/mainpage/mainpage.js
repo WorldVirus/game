@@ -102,6 +102,8 @@ export class MainPage extends Block {
         }).then(response => {
                 if (response.status === 200) {
                     return response.text();
+                } else {
+                    throw 'error';
                 }
             }).then(data => {
                 let username = data.substring(data.indexOf('login is') + 9, data.length);
