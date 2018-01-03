@@ -33,7 +33,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             return;
         }
         userService.login(formdata[0], formdata[1])
-            .then(() => window.history.pushState({}, '', '/game'))
+            .then(() => new Router().go('/game'))
             .then(() => {
                 wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
                 let username = formdata[0];
@@ -42,7 +42,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                 document.getElementById('logout').addEventListener('click', function () {
                     document.getElementById('user-menu').remove();
                     new UserService().logout();
-                    window.history.pushState({}, '', '/');
+                    new Router().go('/');
                 });
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
@@ -63,7 +63,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
              .then(() => userService.login(formdata[0], formdata[2]))
-             .then(() => window.history.pushState({}, '', '/game'))
+             .then(() => new Router().go('/game'))
               .then(() => {
                   wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
                   let username = formdata[0];
@@ -77,7 +77,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                  error.text().then(error => {
                      Validate.userError(error);
                      console.log("Signup error: " + error);
-                     window.history.pushState({}, '', '/');
+                     new Router().go('/');
                  });
             });
      });

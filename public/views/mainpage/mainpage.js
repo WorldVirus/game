@@ -111,7 +111,7 @@ export class MainPage extends Block {
                     document.getElementById('logout').addEventListener('click', function () {
                         document.getElementById('user-menu').remove();
                         new UserService().logout();
-                        window.history.pushState({}, '', '/');
+                        new Router().go('/');
                     });
                 }
         });

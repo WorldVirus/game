@@ -121,7 +121,7 @@ export default class Choose extends Block {
         a.setAttribute('value','/');
         a.innerHTML = 'MENU';
         a.addEventListener('click', function() {
-            window.history.pushState({}, '', '/');
+            new Router().go('/');
         });
         const enter=document.querySelector('div.choose').appendChild(document.createElement('a'));
         enter.setAttribute('class','enter');

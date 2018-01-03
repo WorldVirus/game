@@ -20,7 +20,6 @@ export default  class Router {
 
     navigate() {
         window.onpopstate = event => {
-            console.log("Event go")
             this.go(window.location.pathname);
         };
 
