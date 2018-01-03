@@ -49,8 +49,7 @@ export default  class Router {
     }
 
     go(path) {
-        x++;
-        if (x === 0) {
+        if (!document.getElementById('user-menu')) {
             fetch('https://kvvartet2017.herokuapp.com/session', {
                 method: 'POST',
                 mode: 'cors',
@@ -92,5 +91,3 @@ export default  class Router {
         }
     }
 }
-
-let x = 0;
