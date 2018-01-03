@@ -49,6 +49,8 @@ export default  class Router {
     }
 
     go(path) {
+        console.log(this.routes);
+        console.log(this.routes.get(path));
         const view = this.routes.get(path);
         if (!view) {
             document.body.innerHTML = '<h class="notfound"> We didnot do such page )';
