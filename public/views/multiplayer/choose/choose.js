@@ -40,7 +40,7 @@ export default class GameType {
         })
 
         document.querySelector('a.single').addEventListener('click',() =>{
-            new Router().go('/singleplay')
+            window.history.pushState({}, '', '/singleplay');
         })
     }
 }

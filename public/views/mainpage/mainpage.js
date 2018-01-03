@@ -95,18 +95,34 @@ export class MainPage extends Block {
             allButtons[i].querySelector('li').setAttribute('value',valuePage[i])
         }
 
-        if (document.cookie && !document.getElementById('user-menu')) {
-            let username = getCookie('username');
-            let email = getCookie('email');
-            document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
-            </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
-            document.getElementById('logout').addEventListener('click', function() {
-                deleteCookie('username');
-                deleteCookie('password');
-                document.getElementById('user-menu').remove();
-                new UserService().logout(username, email);
+        fetch('https://kvvartet2017.herokuapp.com/session', {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include'
+        }).then(response => {
+                if (response.status === 200) {
+                    let username = response.body.substring(response.body.indexOf('login is') + 9, response.body.length);
+                    document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+                        </p><a id="logout" style="margin: 4px;">Logout</a></div>`;
+                    document.getElementById('logout').addEventListener('click', function() {
+                        document.getElementById('user-menu').remove();
+                        new UserService().logout();
+                    });
+                }
             });
-        }
+
+        // if (document.cookie && !document.getElementById('user-menu')) {
+        //     let username = getCookie('username');
+        //     let email = getCookie('email');
+        //     document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+        //     </p><a id="logout" style="margin: 4px;">Logut</a></div>`;
+        //     document.getElementById('logout').addEventListener('click', function() {
+        //         deleteCookie('username');
+        //         deleteCookie('password');
+        //         document.getElementById('user-menu').remove();
+        //         new UserService().logout(username, email);
+        //     });
+        // }
     }
  }
 

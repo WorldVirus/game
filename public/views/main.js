@@ -33,7 +33,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
         }
 
         userService.login(formdata[0], formdata[1])
-            .then(() => new Router().go('/game'))
+            .then(() => window.history.pushState({}, '', '/game'))
             .then(() => {
                 wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
                 document.cookie = 'username' + '=' + formdata[0];
@@ -50,7 +50,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
-             .then(() => new Router().go('/game'))
+             .then(() => window.history.pushState({}, '', '/game'))
               .then(() => {
                   wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
                   document.cookie = 'username' + '=' + formdata[0];
