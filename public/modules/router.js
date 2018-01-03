@@ -63,7 +63,7 @@ export default  class Router {
                     if (data) {
                         let username = data.substring(data.indexOf('login is') + 9, data.length);
 
-                        document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;background-color: #83c0f6;border-radius: 5px;"><p style="margin: 4px;">${username}</p><a id="logout" style="margin: 4px;background-color: #51ecec;padding: 4px;display: block;text-align: center;border-radius: 5px;border: 2px solid black;">Logout</a></div>`;
+                        document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;background-color: #83c0f6;border-radius: 5px;"><p style="margin: 4px;">${username}</p><a id="logout">Logout</a></div>`;
                         document.getElementById('logout').addEventListener('click', function () {
                             document.getElementById('user-menu').remove();
                             new UserService().logout();
