@@ -49,8 +49,8 @@ export default  class Router {
     }
 
     go(path) {
-        if (!document.getElementById('user-menu')) {
-            setTimeout(function() {
+        setTimeout(function() {
+            if (!document.getElementById('user-menu')) {
                 fetch('https://kvvartet2017.herokuapp.com/session', {
                     method: 'POST',
                     mode: 'cors',
@@ -71,8 +71,8 @@ export default  class Router {
                         });
                     }
                 });
-            }, 300);
-        }
+            }
+        }, 300);
         const view = this.routes.get(path);
         if (!view) {
             document.body.innerHTML = '<h class="notfound"> We didnot do such page )';
