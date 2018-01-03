@@ -49,6 +49,29 @@ export default  class Router {
     }
 
     go(path) {
+        x++;
+        if (x === 0) {
+            fetch('https://kvvartet2017.herokuapp.com/session', {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include'
+            }).then(response => {
+                if (response.status === 200) {
+                    return response.text();
+                }
+            }).then(data => {
+                if (data) {
+                    let username = data.substring(data.indexOf('login is') + 9, data.length);
+                    document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+                            </p><a id="logout" style="margin: 4px;">Logout</a></div>`;
+                    document.getElementById('logout').addEventListener('click', function () {
+                        document.getElementById('user-menu').remove();
+                        new UserService().logout();
+                        new Router().go('/');
+                    });
+                }
+            });
+        }
         const view = this.routes.get(path);
         if (!view) {
             document.body.innerHTML = '<h class="notfound"> We didnot do such page )';
@@ -69,3 +92,5 @@ export default  class Router {
         }
     }
 }
+
+let x = 0;

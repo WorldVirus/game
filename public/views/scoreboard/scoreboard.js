@@ -5,7 +5,7 @@ import './scoreboard.scss';
 //const score= new UserService();
 
 
-const rowValues = [`Username`,`Frags`,`Gold`]
+const rowValues = [`Username`,`Frags`,`Gold`];
 //  const buttons = [`first`,`second`,`third`,`four`];
 // const data  = [{username:'gamer',gold:0,frags:0},{username:'lammer',gold:110,frags:8989},{username:'lammer96',gold:1680,frags:1560}]
 
