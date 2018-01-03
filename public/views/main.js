@@ -34,12 +34,13 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             .then(() => window.history.pushState({}, '', '/game'))
             .then(() => {
                 wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
-
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
             .catch(error => {
-                console.log("Signin error: " + error);
-            });
+                return error.text();
+            }).then(data => {
+            console.log("Signin error: " + data);
+        });
     });
 }
 
@@ -50,12 +51,15 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
+             .then(() => userService.login(formdata[0], formdata[2]))
              .then(() => window.history.pushState({}, '', '/game'))
               .then(() => {
                   wrapper.appendChildBlock('name',new Block('div',['user']).setText( setter(formdata[0])));
-                  document.cookie = 'username' + '=' + formdata[0];
-                  document.cookie = 'password' + '=' + formdata[1];
-             })
+             }).catch(error => {
+                 return error.text();
+            }).then(data => {
+             console.log("Signup error: " + data);
+            });
      });
  }
 
