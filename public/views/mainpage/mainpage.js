@@ -91,7 +91,7 @@ export class MainPage extends Block {
         }
         let allButtons = document.getElementsByTagName('a');
         for (let i = 0; i<5; ++i) {
-            allButtons[i].innerHTML = `<li>${text[i]}</li>`
+            allButtons[i].innerHTML = `<li>${text[i]}</li>`;
             allButtons[i].querySelector('li').setAttribute('value',valuePage[i])
         }
 
@@ -111,6 +111,7 @@ export class MainPage extends Block {
                     document.getElementById('logout').addEventListener('click', function () {
                         document.getElementById('user-menu').remove();
                         new UserService().logout();
+                        window.history.pushState({}, '', '/');
                     });
                 }
         });

@@ -42,15 +42,16 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                 document.getElementById('logout').addEventListener('click', function () {
                     document.getElementById('user-menu').remove();
                     new UserService().logout();
+                    window.history.pushState({}, '', '/');
                 });
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
             .catch(error => {
-                return error.text();
-            }).then(data => {
-                Validate.userError(data);
-                console.log("Signin error: " + data);
-        });
+                error.text().then(error => {
+                    Validate.userError(error);
+                    console.log("Signup error: " + error);
+                });
+            });
     });
 }
 
@@ -73,10 +74,11 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                       new UserService().logout();
                   });
              }).catch(error => {
-                 return error.text();
-            }).then(data => {
-                Validate.userError(data);
-                console.log("Signup error: " + data);
+                 error.text().then(error => {
+                     Validate.userError(error);
+                     console.log("Signup error: " + error);
+                     window.history.pushState({}, '', '/');
+                 });
             });
      });
  }

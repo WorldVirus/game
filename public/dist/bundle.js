@@ -1103,6 +1103,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_custom_module_custom_module__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__servises_user_service__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_mediator__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__blocks_forms_validation__ = __webpack_require__(6);
+
+
 
 
 
@@ -1142,12 +1145,13 @@ function signin(login) {
             document.getElementById('logout').addEventListener('click', function () {
                 document.getElementById('user-menu').remove();
                 new __WEBPACK_IMPORTED_MODULE_5__servises_user_service__["a" /* default */]().logout();
+                window.history.pushState({}, '', '/');
             });
         }).then(() => new __WEBPACK_IMPORTED_MODULE_6__modules_mediator__["default"]().publish('VIEW_LOAD')).catch(error => {
-            return error.text();
-        }).then(data => {
-            Validate.userError(data);
-            console.log("Signin error: " + data);
+            error.text().then(error => {
+                __WEBPACK_IMPORTED_MODULE_7__blocks_forms_validation__["a" /* default */].userError(error);
+                console.log("Signup error: " + error);
+            });
         });
     });
 }
@@ -1168,10 +1172,11 @@ function signup(registration) {
                 new __WEBPACK_IMPORTED_MODULE_5__servises_user_service__["a" /* default */]().logout();
             });
         }).catch(error => {
-            return error.text();
-        }).then(data => {
-            Validate.userError(data);
-            console.log("Signup error: " + data);
+            error.text().then(error => {
+                __WEBPACK_IMPORTED_MODULE_7__blocks_forms_validation__["a" /* default */].userError(error);
+                console.log("Signup error: " + error);
+                window.history.pushState({}, '', '/');
+            });
         });
     });
 }
@@ -1208,9 +1213,6 @@ function setter(input) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_forms_validation__ = __webpack_require__(6);
-
-
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
@@ -2386,6 +2388,7 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
                 document.getElementById('logout').addEventListener('click', function () {
                     document.getElementById('user-menu').remove();
                     new __WEBPACK_IMPORTED_MODULE_2__servises_user_service__["a" /* default */]().logout();
+                    window.history.pushState({}, '', '/');
                 });
             }
         });
@@ -3938,7 +3941,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
     creation() {
 
         if (document.cookie) {
-            window.history.pushState({}, '', '/game');
+            new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game');
             return;
         }
 
