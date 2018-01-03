@@ -1,6 +1,7 @@
 import Block from '../baseview';
 import './main-page.scss';
 import UserService from '../../servises/user-service';
+import Router from '../../modules/router';
 
 import DemoGameModule from '../singleplay/DemoGameModule'
 export const buttons = [
