@@ -51,6 +51,9 @@ router.register('/', mainMenu)
     .register('/scoreboard/1',scoreboard)
     .register('/scoreboard/2',scoreboard)
     .register('/scoreboard/3',scoreboard)
+    .register('/scoreboard/4',scoreboard)
+    .register('/scoreboard/5',scoreboard)
+    .register('/scoreboard/6',scoreboard)
     .register('/mode',typeGame)
     .navigate();
 

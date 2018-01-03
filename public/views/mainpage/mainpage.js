@@ -96,8 +96,6 @@ export class MainPage extends Block {
             allButtons[i].querySelector('li').setAttribute('value',valuePage[i])
         }
 
-        console.log(window.history.length);
-
         fetch('https://kvvartet2017.herokuapp.com/session', {
             method: 'POST',
             mode: 'cors',
