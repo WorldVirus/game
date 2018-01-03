@@ -73,6 +73,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                       document.getElementById('logout').addEventListener('click', function () {
                           document.getElementById('user-menu').remove();
                           new UserService().logout();
+                          new Router().go('/');
                       });
                   }
              }).catch(error => {
