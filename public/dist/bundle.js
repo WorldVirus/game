@@ -1182,46 +1182,6 @@ function setter(input) {
     return String(input);
 }
 
-function setCookie(name, value, options) {
-    options = options || {};
-
-    var expires = options.expires;
-
-    if (typeof expires == "number" && expires) {
-        var d = new Date();
-        d.setTime(d.getTime() + expires * 1000);
-        expires = options.expires = d;
-    }
-    if (expires && expires.toUTCString) {
-        options.expires = expires.toUTCString();
-    }
-
-    value = encodeURIComponent(value);
-
-    var updatedCookie = name + "=" + value;
-
-    for (var propName in options) {
-        updatedCookie += "; " + propName;
-        var propValue = options[propName];
-        if (propValue !== true) {
-            updatedCookie += "=" + propValue;
-        }
-    }
-
-    document.cookie = updatedCookie;
-}
-
-function deleteCookie(name) {
-    setCookie(name, "", {
-        expires: -1
-    });
-}
-
-function getCookie(name) {
-    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
 
 
 /***/ }),
@@ -2404,6 +2364,7 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
             credentials: 'include'
         }).then(response => {
             if (response.status === 200) {
+                console.log('String: ' + response.string);
                 let username = response.body.substring(response.body.indexOf('login is') + 9, response.body.length);
                 document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
                         </p><a id="logout" style="margin: 4px;">Logout</a></div>`;
@@ -2430,46 +2391,6 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
 }
 /* unused harmony export MainPage */
 
-
-function setCookie(name, value, options) {
-    options = options || {};
-
-    var expires = options.expires;
-
-    if (typeof expires == "number" && expires) {
-        var d = new Date();
-        d.setTime(d.getTime() + expires * 1000);
-        expires = options.expires = d;
-    }
-    if (expires && expires.toUTCString) {
-        options.expires = expires.toUTCString();
-    }
-
-    value = encodeURIComponent(value);
-
-    var updatedCookie = name + "=" + value;
-
-    for (var propName in options) {
-        updatedCookie += "; " + propName;
-        var propValue = options[propName];
-        if (propValue !== true) {
-            updatedCookie += "=" + propValue;
-        }
-    }
-
-    document.cookie = updatedCookie;
-}
-
-function deleteCookie(name) {
-    setCookie(name, "", {
-        expires: -1
-    });
-}
-
-function getCookie(name) {
-    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
 
 /* harmony default export */ __webpack_exports__["a"] = (MainPage);
 
@@ -4225,48 +4146,6 @@ class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
 
 }
 
-// function setCookie(name, value, options) {
-//     options = options || {};
-//
-//     var expires = options.expires;
-//
-//     if (typeof expires == "number" && expires) {
-//         var d = new Date();
-//         d.setTime(d.getTime() + expires * 1000);
-//         expires = options.expires = d;
-//     }
-//     if (expires && expires.toUTCString) {
-//         options.expires = expires.toUTCString();
-//     }
-//
-//     value = encodeURIComponent(value);
-//
-//     var updatedCookie = name + "=" + value;
-//
-//     for (var propName in options) {
-//         updatedCookie += "; " + propName;
-//         var propValue = options[propName];
-//         if (propValue !== true) {
-//             updatedCookie += "=" + propValue;
-//         }
-//     }
-//
-//     document.cookie = updatedCookie;
-// }
-//
-// function deleteCookie(name) {
-//     setCookie(name, "", {
-//         expires: -1
-//     })
-// }
-//
-// function getCookie(name) {
-//     var matches = document.cookie.match(new RegExp(
-//         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-//     ));
-//     return matches ? decodeURIComponent(matches[1]) : undefined;
-// }
-
 /* harmony default export */ __webpack_exports__["a"] = (Info);
 
 /***/ }),
@@ -4534,48 +4413,6 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
     }
 
 }
-
-// function setCookie(name, value, options) {
-//     options = options || {};
-//
-//     var expires = options.expires;
-//
-//     if (typeof expires == "number" && expires) {
-//         var d = new Date();
-//         d.setTime(d.getTime() + expires * 1000);
-//         expires = options.expires = d;
-//     }
-//     if (expires && expires.toUTCString) {
-//         options.expires = expires.toUTCString();
-//     }
-//
-//     value = encodeURIComponent(value);
-//
-//     var updatedCookie = name + "=" + value;
-//
-//     for (var propName in options) {
-//         updatedCookie += "; " + propName;
-//         var propValue = options[propName];
-//         if (propValue !== true) {
-//             updatedCookie += "=" + propValue;
-//         }
-//     }
-//
-//     document.cookie = updatedCookie;
-// }
-//
-// function deleteCookie(name) {
-//     setCookie(name, "", {
-//         expires: -1
-//     })
-// }
-//
-// function getCookie(name) {
-//     var matches = document.cookie.match(new RegExp(
-//         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-//     ));
-//     return matches ? decodeURIComponent(matches[1]) : undefined;
-// }
 
 /* harmony default export */ __webpack_exports__["a"] = (Scoreboard);
 
@@ -4886,46 +4723,6 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Choose;
 
-
-function setCookie(name, value, options) {
-    options = options || {};
-
-    var expires = options.expires;
-
-    if (typeof expires == "number" && expires) {
-        var d = new Date();
-        d.setTime(d.getTime() + expires * 1000);
-        expires = options.expires = d;
-    }
-    if (expires && expires.toUTCString) {
-        options.expires = expires.toUTCString();
-    }
-
-    value = encodeURIComponent(value);
-
-    var updatedCookie = name + "=" + value;
-
-    for (var propName in options) {
-        updatedCookie += "; " + propName;
-        var propValue = options[propName];
-        if (propValue !== true) {
-            updatedCookie += "=" + propValue;
-        }
-    }
-
-    document.cookie = updatedCookie;
-}
-
-function deleteCookie(name) {
-    setCookie(name, "", {
-        expires: -1
-    });
-}
-
-function getCookie(name) {
-    var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
 
 /***/ }),
 /* 59 */
