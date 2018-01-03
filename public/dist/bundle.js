@@ -766,18 +766,18 @@ const MIN_PASSWORD_LENGTH = 4;
  */
 class Validate {
 
-    static userError() {
+    static userError(error) {
         let form;
         const div = document.createElement('div');
         if (document.querySelector('form.login') === null && document.getElementsByTagName('p').length === 0) {
             form = document.querySelector('form.registration');
             div.className = "message-error";
-            div.innerHTML = "<p> Sorry,user is already exist </p> ";
+            div.innerHTML = `<p>${error}</p>`;
             form.appendChild(div);
         } else if (document.querySelector('form.registration') === null && document.getElementsByTagName('p').length === 0) {
             form = document.querySelector('form.login');
             div.className = "message-error";
-            div.innerHTML = "<p> Sorry,user is not found </p> ";
+            div.innerHTML = `<p>${error}</p>`;
             form.appendChild(div);
         }
     }
@@ -1136,9 +1136,17 @@ function signin(login) {
         }
         userService.login(formdata[0], formdata[1]).then(() => window.history.pushState({}, '', '/game')).then(() => {
             wrapper.appendChildBlock('name', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['user']).setText(setter(formdata[0])));
+            let username = formdata[0];
+            document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+                            </p><a id="logout" style="margin: 4px;">Logout</a></div>`;
+            document.getElementById('logout').addEventListener('click', function () {
+                document.getElementById('user-menu').remove();
+                new __WEBPACK_IMPORTED_MODULE_5__servises_user_service__["a" /* default */]().logout();
+            });
         }).then(() => new __WEBPACK_IMPORTED_MODULE_6__modules_mediator__["default"]().publish('VIEW_LOAD')).catch(error => {
             return error.text();
         }).then(data => {
+            Validate.userError(data);
             console.log("Signin error: " + data);
         });
     });
@@ -1152,9 +1160,17 @@ function signup(registration) {
         }
         userService.signup(formdata[0], formdata[1], formdata[2]).then(() => userService.login(formdata[0], formdata[2])).then(() => window.history.pushState({}, '', '/game')).then(() => {
             wrapper.appendChildBlock('name', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['user']).setText(setter(formdata[0])));
+            let username = formdata[0];
+            document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
+                            </p><a id="logout" style="margin: 4px;">Logout</a></div>`;
+            document.getElementById('logout').addEventListener('click', function () {
+                document.getElementById('user-menu').remove();
+                new __WEBPACK_IMPORTED_MODULE_5__servises_user_service__["a" /* default */]().logout();
+            });
         }).catch(error => {
             return error.text();
         }).then(data => {
+            Validate.userError(data);
             console.log("Signup error: " + data);
         });
     });
@@ -1342,7 +1358,6 @@ class Http {
             if (response.status === 200) {
                 return;
             } else if (response.status >= 400) {
-                __WEBPACK_IMPORTED_MODULE_0__blocks_forms_validation__["a" /* default */].userError();
                 throw response;
             }
         });

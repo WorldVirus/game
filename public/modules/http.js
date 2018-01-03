@@ -146,8 +146,7 @@ class Http {
                 if (response.status === 200 ) {
                     return;
                 }
-                else if (response.status >= 400){
-                    Validate.userError();
+                else if (response.status >= 400) {
                     throw response;
                 }
             });

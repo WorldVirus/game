@@ -46,7 +46,8 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             .catch(error => {
                 return error.text();
             }).then(data => {
-            console.log("Signin error: " + data);
+                Validate.userError(data);
+                console.log("Signin error: " + data);
         });
     });
 }
@@ -72,7 +73,8 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              }).catch(error => {
                  return error.text();
             }).then(data => {
-             console.log("Signup error: " + data);
+                Validate.userError(data);
+                console.log("Signup error: " + data);
             });
      });
  }
