@@ -80,7 +80,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                  error.text().then(error => {
                      Validate.userError(error);
                      console.log("Signup error: " + error);
-                     new Router().go('/');
                  });
             });
      });

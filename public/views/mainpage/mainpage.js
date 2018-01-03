@@ -68,7 +68,7 @@ export class MainPage extends Block {
                 document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
             }
             let banner = document.createElement("div");
-            document.querySelector('div.wrapper').appendChild(banner)
+            document.querySelector('div.wrapper').appendChild(banner);
             banner.setAttribute('class','menu');
             document.querySelector('div.menu').appendChild(this._element)
         }
