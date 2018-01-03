@@ -101,6 +101,8 @@ export class MainPage extends Block {
             credentials: 'include'
         }).then(response => {
                 if (response.status === 200) {
+                    console.log(response);
+                    console.log(response.body);
                     let username = response.body.substring(response.body.indexOf('login is') + 9, response.body.length);
                     document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;"><p style="margin: 4px;">${username}
                         </p><a id="logout" style="margin: 4px;">Logout</a></div>`;
