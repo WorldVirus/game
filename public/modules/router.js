@@ -51,7 +51,7 @@ export default  class Router {
     go(path) {
         setTimeout(function() {
             if (!document.getElementById('user-menu')) {
-                fetch('https://kvvartet2017.herokuapp.com/session', {
+                fetch('https://landsanddungeons.ru.com/restapi/session', {
                     method: 'POST',
                     mode: 'cors',
                     credentials: 'include'
